@@ -1,0 +1,36 @@
+.search input{
+background-color: rgb(249, 249, 252);
+height: 43px;
+width: 100%;
+border: 1px solid rgb(197, 199, 199);
+border-radius: 22px;
+text-align: right;
+padding-right: 22px;
+font-family: Ali;
+font-size: 15px;
+}
+.search{
+width: 53%;
+margin-right: 66px;
+position: relative;
+}
+.search img{
+    position:absolute;
+    opacity: 0.2;
+    top: 13px; 
+    left: 22px;
+}
+
+.search input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgba(211, 212, 212, 0.938);
+    font-size: 15px;
+    opacity: 1; /* Firefox */
+  }
+  
+  .search input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: rgb(179, 174, 174);
+  }
+  
+  .center-box input::-ms-input-placeholder { /* Microsoft Edge */
+    color: rgb(189, 185, 185);
+  }

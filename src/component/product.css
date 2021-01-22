@@ -1,0 +1,156 @@
+.product-container{
+    font-size: 14px;
+width: 95%;
+margin: 11px auto;
+width: 98%;
+margin: 11px auto;
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+justify-content: center;
+}
+.product-item{
+    margin:13px 0px;
+      
+width: 90%;
+border:1px solid rebeccapurple;
+}
+.product-image{
+    
+    width: 200px;
+}
+.product-item-in{
+    text-align: center;
+    display:flex ;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.product-item-discount{
+display: flex;
+
+align-self: flex-start;
+
+
+}
+.discount1{
+    color: white;
+    border-radius: 8px;
+    padding: 3px 5px;
+    margin: 0px 3px ;
+    background-color: rgb(248, 42, 6);
+}
+
+.discount2{
+    position: relative;
+    z-index: -2;
+    padding: 3px 5px;
+    margin: 0px 3px ;
+    color: rgb(145, 145, 145);
+}
+.discount2 div{
+    width: 100%;
+    bottom: 12px;
+    position: absolute;
+
+    z-index: -2;
+    border-bottom: 2px solid rgb(180, 177, 176);
+}
+
+.product-image{
+    border: 1px solid red;
+}
+
+.product-item-name{
+margin: 9px 0px;
+height: 40px;
+direction: rtl;
+}
+
+.product-item-price{
+    margin: 7px auto;
+font-size: 17px ;
+direction:rtl;
+font-weight: bold;
+color: rgb(243, 112, 155);
+}
+.product-item-addtocart{
+border-radius: 22px;
+color: white;
+font-size: 17px;
+background-image: linear-gradient(130deg, rgb(253, 141, 97), rgb(250, 46, 182));
+
+padding:8px 16px;
+}
+
+
+@media screen and (min-width:900px){
+    .product-container{
+        width: 98%;
+        margin: 11px auto;
+        display: flex;
+        flex-direction: row;
+     
+        flex-wrap: wrap;
+        justify-content: space-around;
+          }
+    
+    
+.product-item{
+    margin:13px 0px;
+      
+    width: 20%;
+       display: inline-block;
+  
+    
+    }
+    
+}
+
+@media screen and (max-width: 700px) and (min-width:500px) {
+
+    .product-container{
+        width: 98%;
+        margin: 11px auto;
+        display: flex;
+        flex-direction: row;
+     
+        flex-wrap: wrap;
+        justify-content: space-around;
+          }
+    
+    
+.product-item{
+    margin:13px 0px;
+
+    width: 40%;
+    
+    display: inline-block;
+  
+    
+    }
+}
+
+
+@media screen and (max-width: 900px) and (min-width: 700px) {
+
+    .product-container{
+        width: 98%;
+        margin: 11px auto;
+        display: flex;
+        flex-direction: row;
+     
+        flex-wrap: wrap;
+        justify-content: space-around ;
+          }
+        .product-image{
+          
+width: 200px;
+        }
+    
+.product-item{
+    margin:13px 0px;
+    width: 26%;
+    display: inline-block;
+    }
+}
