@@ -20,19 +20,47 @@ const second={
 class Product extends React.Component {
   constructor (props){
   super (props);
-  this.state={errmsage:""}
+  this.state={errmsage:"",sort:"پرفروش ترین"}
   }
+
+  sorttype=(item)=>{
+this.setState({sort:item})
+
+let elem=document.getElementsByClassName('insidesort');
+elem[0].style.display='none';
+
+
+  }
+  sortshow=()=>{
+let elem=document.getElementsByClassName('insidesort');
+if(elem[0].style.display=="block"){
+
+
+  elem[0].style.display='none';
+}else{
+
+  elem[0].style.display='block';
+}
+  }
+  static contextType = ProductContext;
 render(){
-
-
+ const products3 = this.context.product;
+ 
     return (
-        <div className='product-container'>
-          <ProductContext.Consumer>
-            {value=>{
-              let products=value.product;
-          {products!=null?(<div>
-            {products.map(product=>{
-            console.log(product.price);  
+        <div className='main-container'>
+          <div className="sort">
+            <div onClick={this.sortshow} className='sorthead'> مرتب سازی <span>{this.state.sort}</span></div>
+            <div className='insidesort'>
+            <div onClick={()=>this.sorttype("پرفروش ترین")}>پرفروش ترین</div>
+            <div onClick={()=>this.sorttype("گرانترین")}>گرانترین</div>
+            <div onClick={()=>this.sorttype("ارزانترین")}>ارزانترین</div>
+            <div onClick={()=>this.sorttype("محبوب ترین")}>محبوب ترین</div>
+            </div>
+          </div>
+          {products3.length!=0?(<div className='product-container'>
+         
+            {products3.map(product=>{
+            console.log(`product price ${product.price}`);  
   let afterprice=product.price.replace(/,/g, '');
   console.log(afterprice);
   let bb=((afterprice*100)/(100-product.discount));
@@ -55,10 +83,12 @@ render(){
   
   
                 return <div className='product-item'>
-                
+     
                           <div className="product-item-in">
                                <div ><img src={testphoto} className='product-image'/></div>
-                              <div className='product-item-name'>{product.productname}</div>
+                               {console.log(`product name ${product.productname}`)}          
+  
+                              <div className='product-item-name'>{product.name}</div>
                               {product.discount>1?( 
                               <div className='product-item-discount'><div className='discount1'> %{product.discount}</div> <div className='discount2'><div></div> {pricebefor}</div></div>
                               ):(
@@ -81,9 +111,7 @@ render(){
 
           
             </div>):(<div>loading.......</div>)}
-            }}
-          </ProductContext.Consumer>
-        </div>
+                </div>
     );
 }};
 

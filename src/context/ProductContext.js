@@ -7,11 +7,18 @@ const  ProductContextProvider = (props) => {
   
   const [product,setProduct] = useState([]);
 
+  const [cart,setCart] = useState([]);
+
   const [errmssage,setErrMssage] = useState('');
 
   const [producttype,setProducttype] = useState([]);
 
+  const addtocart=(item)=>{
+    this.setState(()=>{
+      return {cart:[...this.state.cart,item]}}
+     )
 
+  }
 
   const settype=(item)=>{
     
@@ -81,7 +88,7 @@ console.log(`productcontext is ${product}`);
 
 
   return (
-    <ProductContext.Provider value={{product,producttype,settype}}>
+    <ProductContext.Provider value={{product,producttype,cart,settype}}>
       {props.children}
     </ProductContext.Provider>
   )

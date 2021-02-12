@@ -4,6 +4,7 @@ import Axios from 'axios';
 import {useHistory} from "react-router-dom";
 
 import './Login.css';
+import Dropzone from 'react-dropzone';
    
 
 const SetProduct = (props) => {
@@ -15,9 +16,32 @@ const SetProduct = (props) => {
   const [detail, setDetail]=useState('');
   const [color, setColor]=useState('');
   const [errMssage, setErrMssage]=useState('');
- 
+  const [images, setImages] = useState([]);
+  
+
+ const ondrop=(files)=>{
+
+let formdata= new FormData();
+const config={
+
+    header:{"content-type":"multipart/form-data"}
+}
+formdata.append("file",files[0]);
+Axios.post("http://localhost:8088/product/UploadProductImage",formdata,config).then(
+  response =>{
+if(response.data.success){
+setImages([...images,response.data.image]);
+console.log([...images,response.data.image])
+  }else{
+
+alert("image doesnt saved ")
+
+    }}
+)
 
 
+
+ }
   const onRegister=async()=>{
 
 
@@ -72,7 +96,57 @@ if (validation()==true){
 
     return (
         <div className='center-box'>
-        
+        <div className="dropzone" style={{display:'flex'}}>
+             <div className="dropzone-one">
+                  <Dropzone
+                  onDrop={ondrop}
+                  multiple={false}
+                  maxSize={8000000}
+                  >
+
+
+                      {({getRootProps,getInputProps})=>(
+                         <div style={{width:"350px",height:"240px",border:"1px solid rgb(130,130,130)",display:"flex",alignItems:"center",justifyContent:"center"}}
+                         {...getRootProps()}
+                         >
+                             <input {...getInputProps()}></input> 
+
+                         <span>add photo</span>
+
+
+                         </div>
+                          
+
+
+                      )
+
+
+                      }
+                  </Dropzone>
+
+
+
+             </div>
+      
+             <div style={{display:'flex',overflow:"scroll",width:"450px"}} className="dropzone-two">
+             {images.map((image,index)=>(
+                 <div >
+                 <img src={`http://localhost:8088/${image}`} style={{width:"200px ",height:'200px',minWidth:"300px"}}/>
+
+                 </div>
+
+
+                 )
+             )}
+
+
+
+             </div>
+      
+
+
+
+        </div>
         <div id='register-section' >
                 <span>ثبت نام</span>              
                 <div id='form' className='login-form'>

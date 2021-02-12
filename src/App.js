@@ -9,6 +9,7 @@ import Product from './component/Product';
 import Login from './component/Login';
 import Register from './component/Register';
 import Axios from 'axios';
+import ProductDetail from './component/Productdetail';
 import Test from './component/test'
 import Listproduct from './component/listproduct';
  const App = () => { 
@@ -51,6 +52,9 @@ userData.setUserinfo({token,user:restoken.data})
         <Switch>
         
           <Route exact path="/Product"    component={Product} />
+         
+         
+          <Route exact path="/Productdetail"    component={ProductDetail} />
          
           <Route exact path="/Login" component={Login} />
           

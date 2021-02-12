@@ -3,7 +3,6 @@ import React,{useState,useContext} from 'react';
 import Axios from 'axios';
 import {useHistory} from "react-router-dom";
 import lockphoto from '../images/lock3.svg';
-import phonephoto from '../images/smartphone.svg';
 import loginnphoto from '../images/login-page.svg';
 import enterphoto from '../images/enter.svg';
 import {AuthContext} from '../context/AuthContext';
