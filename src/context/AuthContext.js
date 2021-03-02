@@ -4,7 +4,10 @@ import React, {createContext,useEffect,useState } from 'react';
 export const AuthContext = createContext();
 
 const  AuthContextProvider = (props) => {
-  const [userinfo, setUserinfo] = useState({token:"njfbkjkdhgd",user:undefined});
+  const [userinfo, setUserinfo] = useState({token:"",user:undefined});
+  const [ oncartprosses, setProsses] = useState(false);
+ 
+  
 
   useEffect(()=>{
 
@@ -35,7 +38,7 @@ if(restoken.status==200){
   },[])
 
   return (
-    <AuthContext.Provider value={{userinfo,setUserinfo}}>
+    <AuthContext.Provider value={{userinfo,setUserinfo,oncartprosses, setProsses}}>
       {props.children}
     </AuthContext.Provider>
   )

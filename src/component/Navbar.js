@@ -2,14 +2,18 @@ import React,{useEffect,useContext} from 'react';
 import { AuthContext } from '../context/AuthContext';
 import './Navbar.css';
 import Search from './Search.js';
+import { ProductContext } from '../context/ProductContext';
 import userphoto from '../images/user2.svg';
 import cartphoto from '../images/bag3.svg';
 import usertickphoto from '../images/usertick2.svg';
 import Listproduct from './listproduct'
 import Menu from './Menu';
+import {Link} from 'react-router-dom';
 import Navdown from './Navdown';
 const Navbar = () => {
     const {userinfo}=useContext(AuthContext);
+    const {cart}=useContext(ProductContext);
+   
     useEffect(()=>{
     
 
@@ -36,9 +40,9 @@ const Navbar = () => {
             </div>
             )}
             <div className="cart">
-            
+             {cart.length!==0?(<span className='numbercart'>{cart.length}</span>):(null)}
                 <img src={cartphoto} width='30px'/>
-                <span>سبد خرید</span>
+              <Link  to="/Cart"> <span className="cart-span" >سبد خرید</span></Link> 
            </div>
         </div>
         <Navdown/>

@@ -1,61 +1,93 @@
-import React from 'react';
+import React,{useContext,useState} from 'react';
+import {pricestyle} from "../util/pricestyle";
+import './cart.css';
+import {withRouter} from 'react-router-dom';
+import { ProductContext } from '../context/ProductContext';
+import Axios from 'axios';
+import { AuthContext } from '../context/AuthContext';
+const  Carttotal=(props)=>{
+const {userinfo,setProsses}=useContext(AuthContext);
+const {cart,nextcart,setPaytotprice}=useContext(ProductContext);
+const [ErrorMsg, setErrorMsg] = useState('');
+ const totalprice=(cart)=>{
+ let pricetotal=0;
+                                              
+console.log(cart.length);
+for(let i=0;i<cart.length;i++){
+     pricetotal+=cart[i].price*cart[i].count;
+}
+return pricestyle(pricetotal)}
 
-                 function  Carttotal({value}){
-                    const {cartsubtotal, cartax, carttotal,clearCart}=value;
+
+                    const totaldiscount=(cart)=>{
+                         let discounttotal=0;
+                         console.log('to aziz delami 2');                     
+for(let i=0;i<cart.length;i++){
+let itemdiscount=((cart[i].price)*(cart[i].discount))/100;
+itemdiscount=itemdiscount*cart[i].count;
+let roundeditemdiscount=Math.round(itemdiscount/100)*100;
+     discounttotal+=roundeditemdiscount;
+
+}
+return pricestyle(discounttotal);
+
+                    }
+
+                    const totalafterprice=(cart)=>{
+                         let priceaftertotal=0;
+                         
+for(let i=0;i<cart.length;i++){
+    let beforepricetotal=cart[i].price*cart[i].count;
+    let discountprice=((cart[i].price*cart[i].discount)/100);
+    discountprice=discountprice*cart[i].count;
+
+let itemafterprice=beforepricetotal-discountprice;
+
+itemafterprice=(Math.round(itemafterprice/100)*100);
+
+priceaftertotal+=itemafterprice;
+}
+setPaytotprice(pricestyle(priceaftertotal));
+return pricestyle(priceaftertotal);
+
+                    }
+                    
+                         
+
+
+                    
+                         
+
+
                        return(
                     <React.Fragment>
-                                  
-                             <div className=" font2 text-center di-rtl align-r mt-4 mb-5" style={{background:"rgb(257, 257, 248)"}}>                              
-                               <div className="py-2 border-b">
-                                  <span className="text-title">
-                                  جمع کل قیمت:
-                                  </span>
-                         <span  className="mx-2"> {cartsubtotal}</span>
-                               </div>
-                               <div className="py-2 border-b" style={{fontSize:"13px"}}>
-                               <img className="mx-1" src="immagge/cart113.svg" width="27px"/>
-                                  <span className="text-title">
-                                   هزینه ارسال:                    
-                                  </span>
-                            <span  className="mx-2">{cartax}</span>
-                            
-                               </div>
-                               <div className="py-2  border-b" style={{fontSize:"13px"}}>
-                               <img src="immagge/discount111.svg" width="27px"/>
-                                  <span className="text-title">
-                                   مجموع تخفیف:                    
-                                  </span>
-                                                <span  className="mx-2">{cartax}</span>
-                    
-                                                
-                               </div>
-                               <div className="py-2 border-b">
-                              
-                                  <span className="text-title font2">
-                                  
-                 مبلغ قابل پرداخت:
-                                  </span>
-                           <span  className="mr-2 ml-1">{carttotal}</span>
-                           <span style={{fontSize:"13px"}}>تومان</span>
-                          
-                               </div>       
-                                                <div className=" ">
-                                                
-                                              
-                                                
-                                                <Link to="/cartnext" >
-                                                <div className="py-2 font2 text-center" style={{background:"rgb(8, 163, 135)",color:"white"}} >
-                                                
-                               ادامه فرایند خرید
-                                
-                                                </div>
-                                                
-                                                </Link>
-                                                
-                                                
-                                                </div>
+                         
+                      <div className='carttotal'>
+
+                         
+                        <div >                              
+                             <span s>قیمت کالاها </span>:<span>{totalprice(cart)}</span>
+
                         </div>
-                       
+                         
+                        <div >                              
+                             <span>مجموع تخفیف </span><span>{totaldiscount(cart)}</span>
+                        </div>
+                         
+                        <div >                              
+                             <span> قیمت نهایی</span>:<span>{totalafterprice(cart)}</span>
+
+                        </div>
+                        <div className="carttotal-button" onClick={()=>{if(userinfo.user!==undefined){ 
+nextcart(userinfo);
+}else{setProsses(true);
+     props.history.push('/Login');
+}
+                         
+
+
+                    }}>ادامه فرایند خرید</div>
+                        </div>
                       </React.Fragment>
                        )}
-                    export default Carttotal;
+                    export default withRouter(Carttotal);

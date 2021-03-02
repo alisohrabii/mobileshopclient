@@ -5,6 +5,8 @@ import {useHistory} from "react-router-dom";
 import lockphoto from '../images/lock3.svg';
 import loginnphoto from '../images/login-page.svg';
 import enterphoto from '../images/enter.svg';
+import {ProductContext} from '../context/ProductContext';
+
 import {AuthContext} from '../context/AuthContext';
 import './Login.css';
 import emailphoto from '../images/email.svg';
@@ -18,7 +20,9 @@ const Login = (props) => {
 
 
 
-    const {userinfo,setUserinfo}=useContext(AuthContext);    
+    const {userinfo,setUserinfo,oncartprosses,setProsses}=useContext(AuthContext);    
+
+    const {nextcart}=useContext(ProductContext);    
 
   const  onRegisterpage=()=>{
 history.push('/Register');
@@ -35,13 +39,18 @@ const  onLogin=()=>{
         const loginAction=await Axios.post("http://localhost:8088/users/login",data);
         if(loginAction.status==200){console.log(loginAction.data);
         localStorage.setItem('hitoken',loginAction.data.token);
-        setUserinfo({user:loginAction.data.user,token:loginAction.data.token})
-        props.history.push('/');
+        setUserinfo({user:loginAction.data.user,token:loginAction.data.token});
+       
+       
+        if(oncartprosses){
+            nextcart({user:loginAction.data.user,token:loginAction.data.token});
+        }else{props.history.push('/');} 
+       
   
         }
     }catch(err){
 
-console.error(err.response.data.mss);
+
 
 setErrMssage(err.response.data.mss);
     }
@@ -94,8 +103,6 @@ if(emaillogin&&passwordlogin){
                              <div  className='changepage' onClick={onRegisterpage}><p> قبلا ثبت نام نکرده ام</p><p>ثبت نام</p></div>
        
                       </div>
-                <div className='llo'> امتحان برای امن</div>
-
                  </div>
             </div>
                            

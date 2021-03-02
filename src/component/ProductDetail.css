@@ -61,7 +61,7 @@ background-color: rgb(255, 255, 255);
 }
 .pro-image{
     width: 35%;
-    background-color: cadetblue;
+    background-color: rgb(255, 255, 255);
     }
     
 .pro-addto{
@@ -158,6 +158,17 @@ color:rgb(177, 177, 177)
 }
 .tecnical{
     text-align: right;
+}
+.pro-image{
+    
+ 
+}
+.con-crasouel{
+
+    max-width: 300px;
+    margin: auto auto auto auto;
+    
+    background-color: beige;
 }
 .parttowselect{
     padding: 10px 0px;

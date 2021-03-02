@@ -9,8 +9,12 @@ import Product from './component/Product';
 import Login from './component/Login';
 import Register from './component/Register';
 import Axios from 'axios';
+import HomePage from './component/HomePage'
+import Cart2 from './component/cart2';
 import ProductDetail from './component/Productdetail';
-import Test from './component/test'
+import Test from './component/test';
+import Cart from './component/cart';
+
 import Listproduct from './component/listproduct';
  const App = () => { 
   const userData=useContext(AuthContext);
@@ -51,12 +55,14 @@ userData.setUserinfo({token,user:restoken.data})
 
         <Switch>
         
-          <Route exact path="/Product"    component={Product} />
+          <Route exact path="/"    component={HomePage} />
          
          
           <Route exact path="/Productdetail"    component={ProductDetail} />
          
           <Route exact path="/Login" component={Login} />
+          
+          <Route exact path="/Cart" component={Cart} />
           
           <Route exact path="/Test" component={Test} />
           
@@ -65,6 +71,8 @@ userData.setUserinfo({token,user:restoken.data})
           <Route exact path="/Setproduct" component={SetProduct} />
                     
           <Route exact path="/Product" component={Product} />
+          
+          <Route exact path="/cart2" component={Cart2} />
           
         </Switch>
       </div>

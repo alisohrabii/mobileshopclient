@@ -14,7 +14,7 @@ const myref=useRef(null);
         <div>
             
    
-   <div className="Menu">
+   <div className="menu-main">
     <div className=" menu-menuicon" onClick={handleshow}><img style={{width:"35px"}}src="immagge/menu200.svg"/></div>
     <Menuitem ref={myref} />
     </div>

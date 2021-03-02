@@ -1,4 +1,15 @@
 
+.menu-main{
+    display:block;
+}
+
+@media screen and (min-width: 690px) {
+    .menu-main{
+        display: none;
+    }
+    
+}
+      
 .menuitems{
     position:fixed;
     right:-100%;

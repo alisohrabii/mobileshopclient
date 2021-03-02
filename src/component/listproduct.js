@@ -1,7 +1,6 @@
 import { getSuggestedQuery } from '@testing-library/react';
 import React from 'react';
 import {withRouter} from 'react-router-dom';
-
 import {Digi,cloths,Furnture,Beauty,Gaming} from './listproductinfo';
 import './listproduct.css';
 import plusephoto from '../images/pluse.svg';
@@ -18,7 +17,7 @@ class Listproduct extends React.Component {
     
 handelclickitem=()=>{
 
-    console.log(this.props.type);
+    
     
 this.props.history.push('/Product')
 
@@ -28,8 +27,7 @@ handelclick=(item)=>{
     
 let elem=document.getElementsByClassName(item);
 //this is parentchild arrey
-console.log(imgphoto[0].src);
-console.log(minusphoto);
+
 if(imgphoto[0].src.indexOf('minus') > -1){imgphoto[0].src=plusephoto;
 
 }else{imgphoto[0].src=minusphoto;   
@@ -95,7 +93,7 @@ render(){
          
     branch[key].map((item,index)=>{
        
-        console.log(key);
+
       if(index== 0 && branch[key].length>1){
          itemo=item;
         return  <div className=' item-list' > <img className={`${key}2`} src={plusephoto} width='15px'/>  <div id='kk' className='hed' onClick={()=>{mythis.handelclick(key)}} >{item}</div> </div>

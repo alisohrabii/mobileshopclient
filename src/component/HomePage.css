@@ -1,0 +1,184 @@
+.home-page-con{
+padding-top: 19px;
+    background-color: rgb(204, 218, 218);
+}
+
+.slideshow{
+    position: relative;
+padding: 0px 0px;
+overflow: hidden;
+margin: 0% 0%;
+border-radius: 7px;
+
+    
+
+}
+.slideshow-con{
+    position:absolute;
+    max-width: 100%;
+    left:0;
+    top:0;
+}
+
+.slideshow figure img{
+    float:left;
+    
+}
+.slideshow figure{
+    
+    margin: 0;
+    position: relative;
+    left:0;
+    transition: left 0.3s;
+    display: flex;
+}
+@keyframes example {
+    0%   {left:0;}
+    27%  {left:0;}
+    32%  {left:-100%;}
+    60%  {left:-100%;}
+    65%  {left:-200%;}
+    95%  {left:-200%;}
+    100%  {left:-300%;}
+  }
+.slideshow img{
+max-width: 100%;
+max-height: 100%;
+
+
+}
+.slide-dote-con{
+    position: absolute;
+    bottom: 0px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+}
+#dot-0{
+    background-color: rgb(154,154,154);
+}
+.slide-dote{
+    
+width: 8px;
+height: 8px;
+margin: 10px;
+border-radius:50%;
+border:2px solid rgb(166,166,166);
+}
+
+.part-one-first-down{
+    display: none;
+}
+.part-one-secound{
+    display: none;  
+}
+.part-one{
+    margin: 0px 5%;
+}
+
+
+@media screen and (min-width: 690px) {
+
+
+
+    .part-one{
+        margin:0px 9%;
+        display: flex;
+        flex-direction: row-reverse;
+        
+    }
+    .box-shadow{
+        
+        box-shadow: 1px 1px 5px rgb(190, 190, 190);
+    }
+    .part-one-first{
+        width: 66.3%;
+        
+                   } 
+    .part-one-first-up{
+        position: relative;
+        padding-top: 40.8%;
+    overflow: hidden;
+        
+        border-radius: 7px;
+        margin: 2.5% 2% 3% 2%;
+    }
+    .part-one-first-up div{
+      
+    }
+
+    .part-one-first-down{
+    margin: 1% 2% 5% 2%;
+        display:flex;
+        
+    }
+    .part-one-first-down div:first-child{
+        width: 48%;
+        border-radius: 7px;
+        overflow: hidden;
+padding-top: 18.25%;
+position: relative;
+
+    }
+    .part-one-first-down div:nth-child(2){
+        border-radius: 7px;
+        overflow: hidden;
+        padding-top: 20.55%;
+        width: 48%;
+        margin: 0 0 0 auto;
+        position: relative;
+    }
+    .part-one-secound{
+        display: block;
+        width: 33.6%;
+    
+    
+    }
+    .part-one-secound-up{
+        position: relative;
+    
+        padding-top: 39.85%;
+        margin: 5% 3%;
+        border-radius: 7px;
+        overflow: hidden;
+
+    }
+    .part-one-secound-down{
+        position: relative;
+        margin-top: 4%;
+        margin: 5% 3%;
+    
+        border-radius: 7px;
+    overflow: hidden;
+        padding-top: 80.45%; 
+        
+    }
+
+
+    
+    .part-tree{
+        height: 400px;
+    }
+
+
+
+
+.part-one-first-down  img{max-width: 100%;
+    position: absolute;
+    z-index: 2;
+    
+    top:0;
+height: auto;
+}
+.part-one-secound  img{max-width: 100%;
+    position: absolute;
+    z-index: 2;
+    
+    top:0;
+height: auto;
+}
+
+
+
+}

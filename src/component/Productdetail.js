@@ -5,32 +5,72 @@ import bestprice from '../images/price3.svg';
 import truck from '../images/truck.svg';
 import describephoto from '../images/describe.svg';
 import tecnicalphoto from '../images/tecnical.svg';
+import {ProductContext} from '../context/ProductContext'
+import {Carousel} from 'react-responsive-carousel';
+import ZoomGallery from 'react-zoom-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 
-
+const zoomGallery = [
+    'http://placehold.it/900x',
+    'http://placehold.it/900x',
+    'http://placehold.it/900x',
+    'http://placehold.it/900x',
+    'http://placehold.it/900x'
+  ]
 var unicproduct = {
     id: 1,
-    name: 'گوشی موبایل نوکیا مدل 150 دوسیم کارت '
+    name: 'گوشی موبایل نتنیبت نستم ششششششششخخخخخخخخخخخت '
     ,
-    img: "immagge/product1.jpg",
+    imges: ["http://localhost:8088/uploads/iii.png","http://localhost:8088/uploads/iii.png","http://localhost:8088/uploads/iii.png"],
     info: "high-five is the best way possible I would like to be friend of of the world and I will be there at home and I will be there for many of us will be there at home and I will be there at home and I have to be friend with a best Wayne I don't think we will see how I doing with plan you have a good day at school tomorrow I can get the best Wayne we can",
     price: 25700,
     incart: false,
-    count: 0,
+    existnumber:4,
+    count: 1,
     brand: 'فیلیپس',
     type: "سشوار",
     discount: 7,
     garanty:"اصالت و سلامت  فیزیکی کالا",
-    total: 0,
+    total: 25700,
     pro: "ki hi <br/>ki",
     describe: "این دستگاه محصول شرک شیوامی برای کاربریاین دستگاه محصول شرک شیوامی برای کاربری عمومی  این دستگاه محصول شرک شیوامی برای کاربری عمومی این دستگاه محصول شرک شیوامی برای کاربری عمومی این دستگاه محصول شرک شیوامی برای کاربری عمومی  این دستگاه محصول شرک شیوامی برای کاربری عمومی این دستگاه محصول شرک شیوامی برای کاربری عمومی  عمومی مناسب بوده"
     ,
     color: ['قرمز','مشکی','آبی','سفید'],
-
+colorselected:"",
     prodetail: [{ name: "صفحه نمایش", code: "12mpx" }, { name: "پردازنده", code: "cori5 N2300 3.5Ghz" }, { name: "حافظه داخلی", code: "6G" },   { name: "دوربین جلو", code: "12Mpx" }]
     ,
     coment: [{ text: "hi my name s ali", writer: "ali" }]
 ,tecnicalinfo: [{ name: "صفحه نمایش", code: "12mpx" }, { name: "پردازنده", code: "cori5 N2300 3.5Ghz" }, { name: "حافظه داخلی", code: "6G" },   { name: "دوربین جلو", code: "12Mpx" }]
 }
+
+
+var unicproduct2 = {
+    id: 5,
+    name: 'گوشی موبایل نتنیcbnbcnmmcmcmت '
+    ,
+    imges: ["http://localhost:8088/uploads/iii.png"],
+    info: "high-five is the best way possible I would like to be friend of of the world and I will be there at home and I will be there for many of us will be there at home and I will be there at home and I have to be friend with a best Wayne I don't think we will see how I doing with plan you have a good day at school tomorrow I can get the best Wayne we can",
+    price: 25700,
+    incart: false,
+    existnumber:4,
+    count: 1,
+    brand: 'فیلیپس',
+    type: "سشوار",
+    discount: 7,
+    garanty:"اصالت و سلامت  فیزیکی کالا",
+    total: 25700,
+    pro: "ki hi <br/>ki",
+    describe: "این دستگاه محصول شرک شیوامی برای کاربریاین دستگاه محصول شرک شیوامی برای کاربری عمومی  این دستگاه محصول شرک شیوامی برای کاربری عمومی این دستگاه محصول شرک شیوامی برای کاربری عمومی این دستگاه محصول شرک شیوامی برای کاربری عمومی  این دستگاه محصول شرک شیوامی برای کاربری عمومی این دستگاه محصول شرک شیوامی برای کاربری عمومی  عمومی مناسب بوده"
+    ,
+    color: ['قرمز','مشکی','آبی','سفید'],
+colorselected:"",
+    prodetail: [{ name: "صفحه نمایش", code: "12mpx" }, { name: "پردازنده", code: "cori5 N2300 3.5Ghz" }, { name: "حافظه داخلی", code: "6G" },   { name: "دوربین جلو", code: "12Mpx" }]
+    ,
+    coment: [{ text: "hi my name s ali", writer: "ali" }]
+,tecnicalinfo: [{ name: "صفحه نمایش", code: "12mpx" }, { name: "پردازنده", code: "cori5 N2300 3.5Ghz" }, { name: "حافظه داخلی", code: "6G" },   { name: "دوربین جلو", code: "12Mpx" }]
+}
+
+
 
 
 class ProductDetail extends React.Component {
@@ -74,8 +114,10 @@ if (i==index){
 
 
     render() {
-    let price=unicproduct.price;
-    let kk =price.toString();
+    let befordiscountprice=unicproduct.price;
+    let afterprice=((100-(unicproduct.discount))*befordiscountprice)/100;
+    let roundedafterprice=(Math.round(afterprice/100)*100);
+    let kk =roundedafterprice.toString();
   let price2;
   if(kk.length>6){
   let ss=kk.substring(kk.length-6,kk.length-3)
@@ -97,7 +139,31 @@ if (i==index){
 
 
                 <div className='part-one'>
-                    <div className='pro-image'></div>
+                    <div className='pro-image'>
+                   <div className='con-crasouel'>
+                   
+                    <Carousel>
+                {unicproduct.imges.map(item=>{
+return(<div>
+    <img src={item} />
+</div>)
+                })}
+               
+                
+        
+                
+            </Carousel>
+            </div>
+
+
+
+
+
+
+
+
+
+                    </div>
                     <div className='pro-data'>
                         <div  className='pro-name'>{unicproduct.name}</div>
                         <div className='pro-brand'>برند :<span   > {unicproduct.brand} </span></div>
@@ -124,8 +190,27 @@ if (i==index){
                        <div className='garanty'>گارانتی  :<span   > {unicproduct.garanty} </span></div>
                        
                        <div className='price-de'>قیمت :       <span> {price2} </span>تومان</div>
-         
-                        <div className='button-addtocard'>افزودن به سبد خرید</div>
+                        <ProductContext.Consumer>
+    {usern=>{
+
+    
+    return (<div><div onClick={()=>{
+        if(this.state.colorselected!==''){
+            alert('first one');
+            usern.addtocart(unicproduct,this.state.colorselected)  
+        }else{
+            alert('secound one');
+        usern.addtocart(unicproduct,unicproduct.color[0])}}} className='button-addtocard'>افزودن به سبد خرید</div>
+       
+        </div> 
+        )}}
+                            
+                            
+                            
+                            
+                            
+                            
+                            </ProductContext.Consumer>                 
                                                 
                         <div  className="under-button">
                         <div><img  src={bestprice} width="25px"/> </div>

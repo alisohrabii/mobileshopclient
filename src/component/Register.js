@@ -11,6 +11,8 @@ import emailphoto from '../images/email.svg';
 
 import {AuthContext} from '../context/AuthContext';
 import './Login.css';
+import {ProductContext} from '../context/ProductContext';
+
    
 
 const Register = (props) => {
@@ -21,9 +23,11 @@ const Register = (props) => {
   const [lastname, setLastname]=useState('');
   const [name, setName]=useState('');
   const [errMssage, setErrMssage]=useState('');
-  const {userinfo,setUserinfo}=useContext(AuthContext);    
+  
 
 
+  const {userinfo,setUserinfo,oncartprosses}=useContext(AuthContext);    
+  const {nextcart}=useContext(ProductContext);    
   const onRegister=async()=>{
     const tryfetch=async()=>{
         try{
@@ -33,8 +37,10 @@ const Register = (props) => {
             const loginAction=await Axios.post("http://localhost:8088/users/login",data);
             if(loginAction.status==200){console.log(loginAction.data);
                 localStorage.setItem('hitoken',loginAction.data.token);
-                setUserinfo({user:loginAction.data.user,token:loginAction.data.token})
-           props.history.push('/');
+                setUserinfo({user:loginAction.data.user,token:loginAction.data.token});
+if(oncartprosses){
+    nextcart({user:loginAction.data.user,token:loginAction.data.token});
+}else{props.history.push('/');}
           }} }catch(err){
 
             
