@@ -1,15 +1,24 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import './HomePage.css';
 import ImgSlide from "./ImgSlide";
-import lockphoto from '../images/lock3.svg';
-
-
+import ElsticSlide from './ElsticSlide';
 const placeholderSrc = (width, height) => `data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}"%3E%3C/svg%3E`;
+
 
 const HomePage=()=> {
     const images=["http://localhost:8088/uploads/photo1.jpg","http://localhost:8088/uploads/photo2.jpg","http://localhost:8088/uploads/photo3.jpg","http://localhost:8088/uploads/photo1.jpg"]
-   
+    const [itemms, setitemms] = useState([
+        {id: 1, name: 'مایع ظرفشویی ون و اکتیو ',image:"http://localhost:8088/uploads/test1.png",discount:5,price:453000},
+        {id: 2, name: 'مایع بک کننده قوی  ا ب ث ',image:"http://localhost:8088/uploads/test2.png",discount:0,price:966000},
+        {id: 3, name: 'کرم ضد آفتاب تارو دو پلاس  مناسب پوست چرب',image:"http://localhost:8088/uploads/test3.png",discount:6,price:79000},
+        {id: 4, name: 'مایع ظرفشویی ون و اکتیو ',image:"http://localhost:8088/uploads/test1.png",discount:5,price:883000},
+        {id: 5, name: 'مایع ظرفشویی ون و اکتیو ',image:"http://localhost:8088/uploads/test2.png",discount:5,price:113000},
+        {id: 6, name: 'مایع ظرفشویی ون و اکتیو ',image:"http://localhost:8088/uploads/test3.png",discount:5,price:223000},
+        {id: 7, name: 'مایع ظرفشویی ون و اکتیو ',image:"http://localhost:8088/uploads/test1.png",discount:5,price:453000},
+        {id: 8, name: 'مایع ظرفشویی ون و اکتیو ',image:"http://localhost:8088/uploads/test2.png",discount:5,price:453000},
+       
+      ]);
     useEffect(()=>{
         console.log('hi');
 
@@ -19,6 +28,7 @@ const HomePage=()=> {
 
 
     },[])
+    
     return (
         <div className="home-page-con">
            
@@ -41,8 +51,37 @@ const HomePage=()=> {
                
             </div>
             
-            <div className='part-tree'></div>
-            <div className='part-four'></div>
+           
+            
+            <div className='box-elstic-show' >
+          <div style={{margin:"0px 45px ",color:"rgb(103,103,103)",padding:"19px 0px",fontSize:"18px",fontWeight:"300",textAlign:"right",borderBottom:"1px solid rgb(211,211,211)"}}>پرفروش ترین ها </div>
+          <ElsticSlide itemms={itemms}/>
+            </div>
+            <div className='box-elstic-show' >
+          <div style={{margin:"0px 45px",color:"rgb(103,103,103)",padding:"19px 0px",fontSize:"18px",textAlign:"right",borderBottom:"1px solid rgb(211,211,211)"}}>گوشی موبایل </div>
+          <ElsticSlide itemms={itemms}/>
+            </div>
+            <div className="part3">
+               <div ><img src='http://localhost:8088/uploads/part3-1.jpg'/></div>
+               <div><img src='http://localhost:8088/uploads/part3-2.jpg'/></div>
+               <div><img src='http://localhost:8088/uploads/part3-3.jpg'/></div>
+               <div><img src='http://localhost:8088/uploads/part3-4.jpg'/></div>
+
+            </div>
+            <div className='box-elstic-show' >
+          <div style={{margin:"0px 45px",color:"rgb(103,103,103)",padding:"19px 0px",fontSize:"18px",textAlign:"right",borderBottom:"1px solid rgb(211,211,211)"}}>لوازم جانبی گوشی </div>
+          <ElsticSlide itemms={itemms}/>
+            </div>
+            <div className='box-elstic-show' >
+          <div style={{margin:"0px 45px",color:"rgb(103,103,103)",padding:"19px 0px",fontSize:"18px",textAlign:"right",borderBottom:"1px solid rgb(211,211,211)"}}> ساعت مچی </div>
+          <ElsticSlide itemms={itemms}/>
+            </div>
+            <div className="part4">
+                 <div><img src='http://localhost:8088/uploads/part4-1.jpg'/></div>
+               <div><img src='http://localhost:8088/uploads/part4-2.jpg'/></div>
+            </div>
+        
+        
         </div>
     );
 };

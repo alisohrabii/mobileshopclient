@@ -1,29 +1,13 @@
 import testphoto from '../images/bell.svg';
 import "./cart.css";
 import trash from '../images/trash.svg';
-import {pricestyle} from "../util/pricestyle";
+import {pricestyle,priceafter,pricediscount} from "../util/pricestyle";
 import React from 'react';
   const Cartitem=(props)=>{
   const {id,name,images, colorselected,rating,existnumber,discount, price,brand, total,count}=props.item;            
   const {addcount,subcount,errmssage, removeitem}=props.value;     
-  const pricediscount=(price,count,discount)=>{
-  let discountprice=((price*discount)/100);
-discountprice=discountprice*count;
-discountprice=(Math.round(discountprice/100)*100);
-let last=pricestyle(discountprice);
-return last;
-
-              }
-              const priceafter=(price,count,discount)=>{
-
-                let discountprice=((price*discount)/100);
-                discountprice=discountprice*count;
-let beforeprice=(price*count);
-let afterprice=beforeprice-discountprice;
-afterprice=(Math.round(afterprice/100)*100);
-let last=pricestyle(afterprice);
-return last;
-              }                
+ 
+                         
                 return(
                  <div className=" cartitem" >
                {console.log("kkkkkkk")}
@@ -73,7 +57,7 @@ return last;
                                     <span>
                                      تخفیف
                                      </span>
-                                     {pricediscount(price,count,discount)}
+                                     {pricestyle(pricediscount(price,count,discount))}
                                     
                                      <span>
                                     تومان
@@ -83,7 +67,7 @@ return last;
                                     <div className="cart-item-price"  >
                                      
                                           
-                                          {priceafter(price,count,discount)}
+                                          {pricestyle(priceafter(price,count,discount))}
                                           <span>
                                           تومان
                                           </span>

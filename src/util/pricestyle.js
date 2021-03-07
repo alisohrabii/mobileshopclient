@@ -17,3 +17,21 @@ export const pricestyle=(total)=>{
   return price2;
 
 }
+export const pricediscount=(price,count,discount)=>{
+  let discountprice=((price*discount)/100);
+discountprice=discountprice*count;
+discountprice=(Math.round(discountprice/100)*100);
+
+return discountprice;
+
+              }
+            export  const priceafter=(price,count,discount)=>{
+
+                let discountprice=((price*discount)/100);
+                discountprice=discountprice*count;
+let beforeprice=(price*count);
+let afterprice=beforeprice-discountprice;
+afterprice=(Math.round(afterprice/100)*100);
+
+return afterprice ;
+              }    

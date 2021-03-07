@@ -1,18 +1,17 @@
 .home-page-con{
 padding-top: 19px;
-    background-color: rgb(204, 218, 218);
+    background-color: rgb(234, 236, 236);
 }
 
 .slideshow{
     position: relative;
-padding: 0px 0px;
+
+
 overflow: hidden;
 margin: 0% 0%;
 border-radius: 7px;
-
-    
-
 }
+
 .slideshow-con{
     position:absolute;
     max-width: 100%;
@@ -22,7 +21,6 @@ border-radius: 7px;
 
 .slideshow figure img{
     float:left;
-    
 }
 .slideshow figure{
     
@@ -66,7 +64,15 @@ margin: 10px;
 border-radius:50%;
 border:2px solid rgb(166,166,166);
 }
+.part-one-first-up{
+    position: relative;
+    border-radius: 7px;
+    padding-top: 41%;
+    
+    
+box-shadow: 1px 1px 8px rgb(188,188,188);
 
+}
 .part-one-first-down{
     display: none;
 }
@@ -76,6 +82,106 @@ border:2px solid rgb(166,166,166);
 .part-one{
     margin: 0px 5%;
 }
+.elsti-item{
+    background-color:white;
+    font-size: 15px;
+
+}
+.elsti-item:hover{
+cursor: pointer;
+}
+.elsti-item div:nth-child(2){
+    min-height: 44px;
+    text-align: center;
+
+}
+.elsti-item div:nth-child(3){
+    height: 28px;
+    padding: 0px 0 0px 5px;
+    text-align: left;
+    margin:9px 0 6px 0;
+}
+.elsti-item div:nth-child(3) span:first-child{
+    color:rgb(41, 182, 88);
+    margin: 0 6px 0 0;
+    padding: 3px 4px ;
+    border-radius: 6px;
+    background-color: rgb(217, 241, 218);
+    font-weight: bold;
+    text-decoration-line: none;
+    font-size: 17px;
+
+}
+.elsti-item div:nth-child(3) span:nth-child(2){
+    text-decoration-line: line-through;
+    color: rgb(145, 145, 145);
+}
+.elsti-item div:nth-child(4){
+direction: rtl;
+    font-weight: bold;
+text-align: left;
+color: rgb(85, 85, 85);
+margin-bottom: 19px;
+}
+.elsti-item div:nth-child(4) span:nth-child(2){
+    font-weight: normal;
+    font-size: 14px;
+    margin: 0 5px 0 0;
+    color: rgb(145, 145, 145);
+}
+.elsti-item div:nth-child(5){
+    display: none;
+}
+
+
+.box-elstic-show{
+margin:10px 10%;
+background-color: white;
+border-radius: 11px;
+box-shadow: 1px 1px 8px rgb(188,188,188);
+}
+
+.part4{
+    margin: 0px 10%;
+    display:block;
+    
+        }
+        .part4 div{
+    position: relative;
+    overflow: hidden;
+    margin: 10px 0;
+
+            padding-top: 34.5%;
+            border-radius: 6px;
+            width: 100%;
+        box-shadow: 1px 1px 7px rgb(200,200,200);
+        }
+
+        .part3{
+            margin: 0px 10%;
+                display: flex;
+                justify-content: space-between;
+            }
+            .part3 div{
+                position: relative;
+                overflow: hidden;
+                padding-top: 36.5%;
+                border-radius: 6px;
+            
+                width: 49%;
+            box-shadow: 1px 1px 7px rgb(200,200,200);
+            }
+            
+
+        .part3 div:nth-child(3){
+            display: none;
+        }
+        
+        .part3 div:nth-child(4){
+            display: none;
+        }
+        
+    
 
 
 @media screen and (min-width: 690px) {
@@ -157,10 +263,6 @@ position: relative;
 
 
     
-    .part-tree{
-        height: 400px;
-    }
-
 
 
 
@@ -178,7 +280,77 @@ height: auto;
     top:0;
 height: auto;
 }
+.part3{
+margin: 0px 10%;
+    display: flex;
+    justify-content: space-between;
+}
+.part3 div{
+    position: relative;
+    overflow: hidden;
+    padding-top: 16.5%;
+    border-radius: 6px;
+
+    width: 24%;
+box-shadow: 1px 1px 7px rgb(200,200,200);
+}
+
+.part3 div:nth-child(3){
+    display: block;
+}
+
+.part3 div:nth-child(4){
+    display: block;
+}
 
 
+.part4{
+margin: 0px 10%;
+display: flex;
+justify-content: space-between;
+    }
+    .part4 div{
+position: relative;
+overflow: hidden;
+        padding-top: 16.5%;
+        border-radius: 6px;
+        width: 48%;
+    box-shadow: 1px 1px 7px rgb(200,200,200);
+    }
+   
 
+
+}
+.part3 div img{
+    position: absolute;
+    left: 0;
+    top:0;
+    max-width: 100%;
+    height: auto;
+
+}
+
+    
+    
+.part4 div img{
+    position: absolute;
+    left: 0;
+    top:0;
+    max-width: 100%;
+    height: auto;
+}
+.rec.rec-arrow:hover {
+    font-size: 17px !important;
+    border-radius: 16%;
+    background-color: rgb(250, 250, 250) !important;
+color:rgb(92, 91, 91) !important; 
+}
+.rec.rec-arrow:disabled {
+    visibility: hidden;
+}
+.rec.rec-arrow {
+    border-radius: 9%;
+font-size: 14px !important;
+    background-color: rgb(255, 255, 255) !important;
+color:rgb(114, 114, 114) !important;
 }

@@ -162,17 +162,17 @@ if (validation()==true){
                                     </div> 
                                 </div>
                                 <div>                          
-                                        <label  className="ness">نام خانوادگی </label>
+                                        <label  className="ness">قیمت </label>
                                         <div className='input-section'>            
                              
-                                            <input type="text" value={price} onChange={e=>setPrice(e.target.value)} placeholder=" نام خانوادگی خود را وارد نماید " className="register-input" ></input>
+                                            <input type="text" value={price} onChange={e=>setPrice(e.target.value)} placeholder=" قیمت  " className="register-input" ></input>
                                         </div>
                                 </div>
                                 <div >
-                                    <label  className="ness">شماره موبایل</label>
+                                    <label  className="ness">تخفیف</label>
                                     <div className='input-section'>                                                 
                             
-                                        <input   type="number" value={discount} onChange={e=>setDiscount(e.target.value)} placeholder="شماره موبایل خود را وارد کنید"/>
+                                        <input   type="number" value={discount} onChange={e=>setDiscount(e.target.value)} placeholder="میزان تخفیف را وارد کنید"/>
                                     </div> 
                                 </div>
                                 <div >
@@ -183,7 +183,7 @@ if (validation()==true){
                                     </div> 
                                 </div>
                                 <div >
-                                    <label  className="ness">ایمیل خود را وارد نماید</label>
+                                    <label  className="ness">دسته بندی کالا</label>
                                     <div className='input-section'>                                                 
                                     
                                         <input   type="text" value={type} onChange={e=>setType(e.target.value)} placeholder="TYpe"/>
