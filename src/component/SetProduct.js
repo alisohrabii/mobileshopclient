@@ -2,23 +2,47 @@
 import React,{useState,useContext} from 'react';
 import Axios from 'axios';
 import {useHistory} from "react-router-dom";
-
 import './Login.css';
 import Dropzone from 'react-dropzone';
-   
-
 const SetProduct = (props) => {
     const history=useHistory();
     const [discount, setDiscount] = useState(0);
-  const [name, setName] = useState('');
+    const [tecnicalinfo, setTecnicalinfo] = useState([]);
+    const [garanty, setGaranty] = useState('');
+    const [comment, setComment] = useState([]);
+    const [brand, setBrand] = useState('');
+    const [TecName, setTecName] = useState('');
+    const [TecValue, setTecValue] = useState('');
+  
+ 
+ 
+    const [name, setName] = useState('');
   const [type, setType] = useState('');
-  const [price, setPrice] = useState('');
+  const [price, setPrice] = useState(0);
   const [detail, setDetail]=useState('');
   const [color, setColor]=useState('');
+  const [colors, setColors]=useState([]);
+ 
   const [errMssage, setErrMssage]=useState('');
   const [images, setImages] = useState([]);
-  
+  const [existnumber, setExistnumber] = useState(0);
+ 
+  const handlrTecnicalInfo=()=>{
 
+setTecnicalinfo([...tecnicalinfo,{name:TecName,value:TecValue}]);
+
+
+  }
+
+  const handelTecnicalinfoDelet=(name)=>{
+const tempT=tecnicalinfo.filter(item=>item.name!==name);
+setTecnicalinfo([...tempT]);
+
+  }
+  const handelcolors=()=>{
+setColors([...colors,color])
+
+  }
  const ondrop=(files)=>{
 
 let formdata= new FormData();
@@ -53,9 +77,15 @@ alert("image doesnt saved ")
         const data={name:name,
             price:price,
              discount:discount,
-             color:color,
-             detail:detail,
+             color:colors,
+             discribe:detail,
+             brand:brand,
+             garanty:garanty,
+             tecnicalinfo:tecnicalinfo,
+              existnumber:existnumber,
+             images:images,
              type:type};
+
              console.log(data);
         const registerAction=await Axios.post("http://localhost:8088/product/Setproduct",data);
         console.log(registerAction);
@@ -148,7 +178,7 @@ if (validation()==true){
 
         </div>
         <div id='register-section' >
-                <span>ثبت نام</span>              
+                <span>ثبت م</span>              
                 <div id='form' className='login-form'>
                      <div>
                     
@@ -168,6 +198,40 @@ if (validation()==true){
                                             <input type="text" value={price} onChange={e=>setPrice(e.target.value)} placeholder=" قیمت  " className="register-input" ></input>
                                         </div>
                                 </div>
+                                <div>                          
+                                        <label  className="ness">تعداد موجود در انبار</label>
+                                        <div className='input-section'>            
+                             
+                                            <input type="text" value={existnumber} onChange={e=>setExistnumber(e.target.value)}  className="register-input" ></input>
+                                        </div>
+                                </div>
+                                <div>                          
+                                        <label  className="ness">برند</label>
+                                        <div className='input-section'>            
+                             
+                                            <input type="text" value={brand} onChange={e=>setBrand(e.target.value)} className="register-input" ></input>
+                                        </div>
+                                </div>
+                                <div>                          
+                                        <label  className="ness">گارانتی</label>
+                                        <div className='input-section'>            
+                             
+                                            <input type="text" value={garanty} onChange={e=>setGaranty(e.target.value)} className="register-input" ></input>
+                                        </div>
+                                </div>
+                                <div style={{display:"flex",justifyContent:"space-between",flexDirection:"row"}}>                          
+                                        <div className="ness">مشخصات فنی </div>
+                                        <div style={{width:"40%"}} >            
+                                            <input type="text" value={TecName} onChange={e=>setTecName(e.target.value)} placeholder='نام مشخصه' className="register-input" ></input>
+                                            <input type="text" value={TecValue} onChange={e=>setTecValue(e.target.value)} placeholder="مقدار مشخصه" className="register-input" ></input>
+                                            <button onClick={handlrTecnicalInfo}>add</button>
+                                        </div>
+                                        <div>{tecnicalinfo.length >0 &&tecnicalinfo.map(item=>{
+                                             
+                                           return  <div onClick={()=>handelTecnicalinfoDelet(item.name)}><span>{item.name}</span>     ::    <span>{item.value}</span></div>                      
+
+                                        })}</div>
+                                </div>
                                 <div >
                                     <label  className="ness">تخفیف</label>
                                     <div className='input-section'>                                                 
@@ -180,8 +244,10 @@ if (validation()==true){
                                     <div className='input-section'>                                                 
                                         
                                         <input   type="text" value={color} onChange={e=>setColor(e.target.value)} placeholder="color"/>
-                                    </div> 
+                                       </div> 
                                 </div>
+                                <div><button onClick={ handelcolors}>add color</button></div> 
+                                  
                                 <div >
                                     <label  className="ness">دسته بندی کالا</label>
                                     <div className='input-section'>                                                 

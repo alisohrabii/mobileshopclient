@@ -8,7 +8,10 @@ import tecnicalphoto from '../images/tecnical.svg';
 import {ProductContext} from '../context/ProductContext'
 import {Carousel} from 'react-responsive-carousel';
 import ZoomGallery from 'react-zoom-carousel';
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "react-responsive-carousel/lib/styles/carousel.min.css"; 
+// requires a loader
+
+import {pricestyle,priceafter} from '../util/pricestyle';
 
 const zoomGallery = [
     'http://placehold.it/900x',
@@ -16,61 +19,7 @@ const zoomGallery = [
     'http://placehold.it/900x',
     'http://placehold.it/900x',
     'http://placehold.it/900x'
-  ]
-var unicproduct = {
-    id: 1,
-    name: 'گوشی موبایل نتنیبت نستم ششششششششخخخخخخخخخخخت '
-    ,
-    imges: ["http://localhost:8088/uploads/iii.png","http://localhost:8088/uploads/iii.png","http://localhost:8088/uploads/iii.png"],
-    info: "high-five is the best way possible I would like to be friend of of the world and I will be there at home and I will be there for many of us will be there at home and I will be there at home and I have to be friend with a best Wayne I don't think we will see how I doing with plan you have a good day at school tomorrow I can get the best Wayne we can",
-    price: 25700,
-    incart: false,
-    existnumber:4,
-    count: 1,
-    brand: 'فیلیپس',
-    type: "سشوار",
-    discount: 7,
-    garanty:"اصالت و سلامت  فیزیکی کالا",
-    total: 25700,
-    pro: "ki hi <br/>ki",
-    describe: "این دستگاه محصول شرک شیوامی برای کاربریاین دستگاه محصول شرک شیوامی برای کاربری عمومی  این دستگاه محصول شرک شیوامی برای کاربری عمومی این دستگاه محصول شرک شیوامی برای کاربری عمومی این دستگاه محصول شرک شیوامی برای کاربری عمومی  این دستگاه محصول شرک شیوامی برای کاربری عمومی این دستگاه محصول شرک شیوامی برای کاربری عمومی  عمومی مناسب بوده"
-    ,
-    color: ['قرمز','مشکی','آبی','سفید'],
-colorselected:"",
-    prodetail: [{ name: "صفحه نمایش", code: "12mpx" }, { name: "پردازنده", code: "cori5 N2300 3.5Ghz" }, { name: "حافظه داخلی", code: "6G" },   { name: "دوربین جلو", code: "12Mpx" }]
-    ,
-    coment: [{ text: "hi my name s ali", writer: "ali" }]
-,tecnicalinfo: [{ name: "صفحه نمایش", code: "12mpx" }, { name: "پردازنده", code: "cori5 N2300 3.5Ghz" }, { name: "حافظه داخلی", code: "6G" },   { name: "دوربین جلو", code: "12Mpx" }]
-}
-
-
-var unicproduct2 = {
-    id: 5,
-    name: 'گوشی موبایل نتنیcbnbcnmmcmcmت '
-    ,
-    imges: ["http://localhost:8088/uploads/iii.png"],
-    info: "high-five is the best way possible I would like to be friend of of the world and I will be there at home and I will be there for many of us will be there at home and I will be there at home and I have to be friend with a best Wayne I don't think we will see how I doing with plan you have a good day at school tomorrow I can get the best Wayne we can",
-    price: 25700,
-    incart: false,
-    existnumber:4,
-    count: 1,
-    brand: 'فیلیپس',
-    type: "سشوار",
-    discount: 7,
-    garanty:"اصالت و سلامت  فیزیکی کالا",
-    total: 25700,
-    pro: "ki hi <br/>ki",
-    describe: "این دستگاه محصول شرک شیوامی برای کاربریاین دستگاه محصول شرک شیوامی برای کاربری عمومی  این دستگاه محصول شرک شیوامی برای کاربری عمومی این دستگاه محصول شرک شیوامی برای کاربری عمومی این دستگاه محصول شرک شیوامی برای کاربری عمومی  این دستگاه محصول شرک شیوامی برای کاربری عمومی این دستگاه محصول شرک شیوامی برای کاربری عمومی  عمومی مناسب بوده"
-    ,
-    color: ['قرمز','مشکی','آبی','سفید'],
-colorselected:"",
-    prodetail: [{ name: "صفحه نمایش", code: "12mpx" }, { name: "پردازنده", code: "cori5 N2300 3.5Ghz" }, { name: "حافظه داخلی", code: "6G" },   { name: "دوربین جلو", code: "12Mpx" }]
-    ,
-    coment: [{ text: "hi my name s ali", writer: "ali" }]
-,tecnicalinfo: [{ name: "صفحه نمایش", code: "12mpx" }, { name: "پردازنده", code: "cori5 N2300 3.5Ghz" }, { name: "حافظه داخلی", code: "6G" },   { name: "دوربین جلو", code: "12Mpx" }]
-}
-
-
+]
 
 
 class ProductDetail extends React.Component {
@@ -109,72 +58,60 @@ if (i==index){
 
 
 
+componentDidMount(){
+
+console.log('oooo')
+
+}
 
 
 
 
+ static contextType = ProductContext;
+ 
+   
     render() {
-    let befordiscountprice=unicproduct.price;
-    let afterprice=((100-(unicproduct.discount))*befordiscountprice)/100;
-    let roundedafterprice=(Math.round(afterprice/100)*100);
-    let kk =roundedafterprice.toString();
-  let price2;
-  if(kk.length>6){
-  let ss=kk.substring(kk.length-6,kk.length-3)
-  let nn=kk.substring(0,kk.length-6);
-  nn += ",";
-  nn += ss;
-  nn += ",000";
-  price2=nn;
-  }else{let oo=kk.substring(kk.length-3,kk.length);
-  price2 =kk.substring(0, kk.length-3);
-  price2 += ",";
-  price2 +=oo;
+        
+  const unicproduct = this.context.productDetail;
+     
+  const addtocart = this.context.addtocart;
+ 
+  
+  console.log(unicproduct);
+  if(unicproduct!==undefined){
+    var prodetail=unicproduct.tecnicalinfo.slice(0,3);
   }
+  setTimeout(()=>{
+    console.log();
+  },3000)
   
 
         return (
             <React.Fragment>
 
-
-
-                <div className='part-one'>
+<div>
+                
+                {unicproduct!==undefined?(<div>
+                    <div className='part-one'>
                     <div className='pro-image'>
-                   <div className='con-crasouel'>
-                   
+                   <div className='con-crasouel'>   
                     <Carousel>
-                {unicproduct.imges.map(item=>{
+                {unicproduct.brifinfo.images.map(item=>{
 return(<div>
-    <img src={item} />
+    <img src={`http://localhost:8088/${item}`} />
 </div>)
-                })}
-               
-                
-        
-                
+                })}   
             </Carousel>
             </div>
-
-
-
-
-
-
-
-
-
                     </div>
                     <div className='pro-data'>
-                        <div  className='pro-name'>{unicproduct.name}</div>
+                        <div  className='pro-name'>{unicproduct.brifinfo.name}</div>
                         <div className='pro-brand'>برند :<span   > {unicproduct.brand} </span></div>
-
-                        
-                       
                         <div className='pro-type'>دسته بندی :<span  > {unicproduct.type}</span> </div>
                         <div className='pro-main-character-con'>
                             <div>مشخصات اصلی</div>
-                        {unicproduct.prodetail.map(item => {
-                         return <div className='pro-main-character'><span className='pro-main-character-name'> .. {item.name}</span> :<span className='pro-main-character-value'> {item.code}</span></div>
+                        {prodetail.map(item => {
+                         return <div className='pro-main-character'><span className='pro-main-character-name'> .. {item.name}</span> :<span className='pro-main-character-value'> {item.value}</span></div>
                         })}
                         </div> 
                     </div>
@@ -182,35 +119,36 @@ return(<div>
 
               <div className='color-title'>انتخاب رنگ</div>
                        <div  className='color-select' >
-                                {unicproduct.color.map((item,index,arr) => {
+                                {unicproduct.colors.map((item,index,arr) => {
                                 return <div className={`color-${index}`} onClick={()=>{this.handlecolor(item,index,arr.length)}} ><span>{item}</span></div>
                                 })}
                        </div>
                        
                        <div className='garanty'>گارانتی  :<span   > {unicproduct.garanty} </span></div>
                        
-                       <div className='price-de'>قیمت :       <span> {price2} </span>تومان</div>
-                        <ProductContext.Consumer>
-    {usern=>{
-
-    
-    return (<div><div onClick={()=>{
+                       {unicproduct.brifinfo.discount>0?( 
+                              <div className='product-item-discount'><div className='discount1'> %{unicproduct.brifinfo.discount}</div> <div className='discount2'><div></div> {pricestyle(unicproduct.brifinfo.price)}</div></div>
+                              ):(
+                                <div className='product-item-price' style={{opacity:"0"}}><span></span> <span></span></div>
+                                )}
+                              <div className='product-item-price'><span> {pricestyle(unicproduct.brifinfo.price)}</span> <span>تومان</span></div>
+                              
+                       <div className='price-de'>قیمت :       <span>{pricestyle(priceafter(unicproduct.brifinfo.price,1,unicproduct.brifinfo.discount))} </span>تومان</div>
+                    <div><div onClick={()=>{
         if(this.state.colorselected!==''){
             alert('first one');
-            usern.addtocart(unicproduct,this.state.colorselected)  
+            addtocart(unicproduct,this.state.colorselected)  
         }else{
             alert('secound one');
-        usern.addtocart(unicproduct,unicproduct.color[0])}}} className='button-addtocard'>افزودن به سبد خرید</div>
+        addtocart(unicproduct,unicproduct.colors[0])}}} className='button-addtocard'>افزودن به سبد خرید</div>
        
         </div> 
-        )}}
+    
                             
                             
                             
                             
-                            
-                            
-                            </ProductContext.Consumer>                 
+                 
                                                 
                         <div  className="under-button">
                         <div><img  src={bestprice} width="25px"/> </div>
@@ -257,7 +195,7 @@ return(<div>
                                 <div className='pro-main-character-con '>
                             <div>مشخصات اصلی</div>
                         {unicproduct.tecnicalinfo.map(item => {
-                         return <div className='pro-main-character nsidetecnical'><span className='tecnical-name'>  {item.name}</span> :<span className='tecnical-value'> {item.code}</span></div>
+                         return <div className='pro-main-character nsidetecnical'><span className='tecnical-name'>  {item.name}</span> :<span className='tecnical-value'> {item.value}</span></div>
                         })}
                         </div> 
                           </div>  
@@ -265,6 +203,14 @@ return(<div>
                             </div>
 
                 </div>
+
+
+
+            </div>):(<div>loading</div>)}
+
+
+
+</div>
 
             </React.Fragment>
         );

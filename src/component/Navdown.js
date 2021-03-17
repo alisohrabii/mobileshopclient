@@ -9,14 +9,32 @@ import tshirtphoto from '../images/tshirt.svg';
 import './navdown.css';
 
 const navdown = () => {
-    return (<div>
-        <div className='navdown-con nnj '>
+
+
+    const  handlSearch=(childdata)=>{
+
+    
+       const elem= document.getElementsByClassName('container-sub');
+ 
+
+    for(let i=0;i<elem.length;i++){
+        document.getElementsByClassName('container-sub')[i].style.display='none';
+    }
+    setTimeout(()=>{
+
+        for(let i=0;i<elem.length;i++){
+            document.getElementsByClassName('container-sub')[i].style.display='block';
+        }
+    },1000)
+     
+}    
+    return (<div> <div className='navdown-con nnj '>
          <div id="furn" className='items2'><div to="/login" className="links2" ><div className='insider'></div><img style={{width:"25px"}} src={dishphoto}/>
          <span className="m-2">لوازم خانگی</span>
          </div>
             
 
-         <div id="furnsub" className='container-sub' ><Listproduct type='لوازم خانگی'/></div>
+         <div  id="furnsub" className='container-sub' ><Listproduct  handleParentSearch={handlSearch} type='لوازم خانگی'/></div>
          
          </div>
 
@@ -27,21 +45,21 @@ const navdown = () => {
          <div id="digi" className="items2"><div to="/login" className="links2  " ><div className='insider'></div><img style={{width:"25px"}} src={tabletphoto}/>
          <span className="m-2">کالا های دیجیتال</span>
          </div>
-         <div id="digisub" className='container-sub' ><Listproduct type='کالاهای دیجیتال'/></div>
+         <div  id="digisub" className='container-sub' ><Listproduct  handleParentSearch={handlSearch} type='کالاهای دیجیتال'/></div>
          </div>
 
          
         <div id="beaut" className="items"><div to="/login" className="links2" ><div className='insider'></div><img style={{width:"25px"}} src={beautyphoto}/>
          <span className="m-2">لوازم آرایشی</span>
          </div>      
-         <div id="beautsub" className='container-sub' ><Listproduct type='لوازم آرایشی'/></div>
+         <div  id="beautsub" className='container-sub' ><Listproduct  handleParentSearch={handlSearch} type='لوازم آرایشی'/></div>
          </div>
 
 
          <div id='mod' className="items2"><div to="/login" className="links2" ><div className='insider'></div><img style={{width:"25px"}} src={tshirtphoto}/>
          <span className="m-2">مد و پوشاک</span>
          </div>
-         <div id='modsub' className='container-sub'  ><Listproduct type='مد وپوشاک'/></div>
+         <div  id='modsub' className='container-sub'  ><Listproduct  handleParentSearch={handlSearch} type='مد وپوشاک'/></div>
          </div> 
 
        
@@ -51,7 +69,7 @@ const navdown = () => {
          <div id='game' className="items2"><div to="/login"  className="links2"><div className='insider'></div><img style={{width:"25px"}} src={gamepadphoto}/>
          <span className="m-2">بازی و سرگرمی</span>
          </div>
-         <div id='gamesub' className='container-sub' ><Listproduct type='بازی وسرگرمی'/></div>
+         <div  id='gamesub' className='container-sub' ><Listproduct  handleParentSearch={handlSearch} type='بازی وسرگرمی'/></div>
          </div>
          
 

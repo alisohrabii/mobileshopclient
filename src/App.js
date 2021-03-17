@@ -14,7 +14,7 @@ import Cart2 from './component/cart2';
 import ProductDetail from './component/Productdetail';
 import Test from './component/test';
 import Cart from './component/cart';
-
+import Footer from './component/Footer'
 import Listproduct from './component/listproduct';
  const App = () => { 
   const userData=useContext(AuthContext);
@@ -77,7 +77,7 @@ userData.setUserinfo({token,user:restoken.data})
         </Switch>
       </div>
     
-     
+     <Footer />
     
   
    

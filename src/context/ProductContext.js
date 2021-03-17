@@ -17,6 +17,8 @@ const  ProductContextProvider = (props) => {
 
   const [producttype,setProducttype] = useState([]);
 
+  const [productDetail,setProductDetail] = useState(undefined);
+
 
   const nextcart=(item)=>{
     alert('nextcart');
@@ -120,19 +122,18 @@ setCart([...newtempcart]);
     try{ const data={
          type:item};
          
-    const registerAction=await Axios.post("http://localhost:8088/product/Getproductbyname",data);
-    console.log(registerAction.data.product);
-const aee=[{name:"ali",lastname:"sohrabi"},{name:"ajh",lastname:"srabi"}];
+    const GetproductbyType=await Axios.post("http://localhost:8088/product/GetproductbyType",data);
+  
+    console.log(GetproductbyType.data.mypro);
+
  
 
-setProduct(registerAction.data.product);
-   
+setProduct(GetproductbyType.data.mypro);
+
 
 }catch(err){
-if(err.response){
-        
+if(err.response){    
 console.error(err.response.data.mss);
-
 setErrMssage(err.response.data.mss);
 }else{setErrMssage('ارتباط با سرور قطع میباشد')} 
 
@@ -146,6 +147,29 @@ tryfetch();
 
 }
 
+
+
+
+
+const handelProductDetail=(proid)=>{
+  setProductDetail(undefined);
+  const tryfetch=async()=>{
+    try{ const data={
+         proid:proid};
+    const GetproductDetail=await Axios.post("http://localhost:8088/product/GetproductDetail",data);
+    console.log(GetproductDetail.data.product[0]);
+    setProductDetail(GetproductDetail.data.product[0]);
+
+}catch(err){
+if(err.response){
+setErrMssage(err.response.data.mss);
+}else{setErrMssage('ارتباط با سرور قطع میباشد')} 
+}//endcatch
+}// end const tryfetch
+tryfetch();
+}
+
+
 useEffect(()=>{
 
 
@@ -156,7 +180,7 @@ useEffect(()=>{
 
 
   return (
-    <ProductContext.Provider value={{product,producttype,nextcart,errmssage,cart, setPaytotprice,Paytotprice,addcount,subcount,removeitem,settype,addtocart}}>
+    <ProductContext.Provider value={{product,productDetail,producttype,nextcart,errmssage,cart,handelProductDetail, setPaytotprice,Paytotprice,addcount,subcount,removeitem,settype,addtocart}}>
       {props.children}
     </ProductContext.Provider>
   )

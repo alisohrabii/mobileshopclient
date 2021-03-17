@@ -14,7 +14,7 @@ const [ErrorMsg, setErrorMsg] = useState('');
                                               
 console.log(cart.length);
 for(let i=0;i<cart.length;i++){
-     pricetotal+=cart[i].price*cart[i].count;
+     pricetotal+=cart[i].brifinfo.price*cart[i].count;
 }
 return pricestyle(pricetotal)}
 
@@ -23,7 +23,7 @@ return pricestyle(pricetotal)}
                          let discounttotal=0;
                          console.log('to aziz delami 2');                     
 for(let i=0;i<cart.length;i++){
-let itemdiscount=((cart[i].price)*(cart[i].discount))/100;
+let itemdiscount=((cart[i].brifinfo.price)*(cart[i].brifinfo.discount))/100;
 itemdiscount=itemdiscount*cart[i].count;
 let roundeditemdiscount=Math.round(itemdiscount/100)*100;
      discounttotal+=roundeditemdiscount;
@@ -37,8 +37,8 @@ return pricestyle(discounttotal);
                          let priceaftertotal=0;
                          
 for(let i=0;i<cart.length;i++){
-    let beforepricetotal=cart[i].price*cart[i].count;
-    let discountprice=((cart[i].price*cart[i].discount)/100);
+    let beforepricetotal=cart[i].brifinfo.price*cart[i].count;
+    let discountprice=((cart[i].brifinfo.price*cart[i].brifinfo.discount)/100);
     discountprice=discountprice*cart[i].count;
 
 let itemafterprice=beforepricetotal-discountprice;

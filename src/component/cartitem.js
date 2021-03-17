@@ -4,7 +4,7 @@ import trash from '../images/trash.svg';
 import {pricestyle,priceafter,pricediscount} from "../util/pricestyle";
 import React from 'react';
   const Cartitem=(props)=>{
-  const {id,name,images, colorselected,rating,existnumber,discount, price,brand, total,count}=props.item;            
+  const {id,name, colorselected,rating,existnumber, brifinfo,brand,garanty, total,count}=props.item;            
   const {addcount,subcount,errmssage, removeitem}=props.value;     
  
                          
@@ -47,7 +47,7 @@ import React from 'react';
                                              گارانتی:
                                                    </span>
                                                    <span >
-                                                   کاوش تیم
+                                                 {garanty}
                                                    </span>
                                                    
                                                    </div>
@@ -57,7 +57,7 @@ import React from 'react';
                                     <span>
                                      تخفیف
                                      </span>
-                                     {pricestyle(pricediscount(price,count,discount))}
+                                     {pricestyle(pricediscount(brifinfo.price,count,brifinfo.discount))}
                                     
                                      <span>
                                     تومان
@@ -67,7 +67,7 @@ import React from 'react';
                                     <div className="cart-item-price"  >
                                      
                                           
-                                          {pricestyle(priceafter(price,count,discount))}
+                                          {pricestyle(priceafter(brifinfo.price,count,brifinfo.discount))}
                                           <span>
                                           تومان
                                           </span>

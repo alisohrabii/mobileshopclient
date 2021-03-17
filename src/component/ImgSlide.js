@@ -25,11 +25,11 @@ setTimeout(()=>{
         for(let i=0;i<images.length-1;i++){
             var dot_elem=document.getElementById(`dot-${i}`);
             if(id==`dot-${i}`){
-                console.log('inside equal');
+                
                 dot_elem.style.background="rgb(152,152,152)"
     
             }else{
-                console.log('inside unnequal');
+                
                 dot_elem.style.background="transparent"
             }
            }
@@ -44,14 +44,14 @@ setTimeout(()=>{
         var elem2 =document.getElementById('conslider');
         setTimeout(()=>{          
 
-        console.log(`width ${elem2.offsetWidth}`);
+        
      divlength=elem2.offsetWidth;
     },700);
     var x=0;
 
     const   slideinterval=  setInterval(() => { 
         setTimeout(()=>{
-            console.log(`currentleft is ${currentleft}`);
+        
             x =  x-divlength;
            let num=-(x/divlength);
            if(num>images.length-2){
@@ -61,12 +61,12 @@ setTimeout(()=>{
            const cer=`dot-${num}`
            handel_dot_Color(cer);
          
-            console.log(`x is ${x}`);
+            
             elem.style.transition='left 0.3s';
                      elem.style.left=`${x}px`;
         },1000)    
 if(x < (-(2*divlength))){
-    console.log('kkkkkk')
+    
     x=0;
 elem.style.transition='left 0s';
 elem.style.left=`0`;

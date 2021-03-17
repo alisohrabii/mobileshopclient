@@ -17,8 +17,9 @@ class Listproduct extends React.Component {
     
 handelclickitem=()=>{
 
-    
-    
+   this.props.handleParentSearch('any data');
+ 
+
 this.props.history.push('/Product')
 
 }
@@ -81,13 +82,12 @@ render(){
             let itemo='';
  return (
      
-    <div className='block-block'>
-          
-        <div className='block-con'>
+    
+          <div className='block-con'>
           
             
            {Object.keys(branch).map(function(key) {
-          return(<div className='block-sub'>
+          return(<div   className='block-sub'>
       
           {  
          
@@ -125,7 +125,7 @@ render(){
            }</div>)
 })}
 </div>
-        </div>
+    
     )};
 };
 
