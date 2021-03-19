@@ -22,6 +22,7 @@ const SetProduct = (props) => {
   const [detail, setDetail]=useState('');
   const [color, setColor]=useState('');
   const [colors, setColors]=useState([]);
+  const [solded, setSolded] = useState(0);
  
   const [errMssage, setErrMssage]=useState('');
   const [images, setImages] = useState([]);
@@ -68,7 +69,7 @@ alert("image doesnt saved ")
  }
   const onRegister=async()=>{
 
-
+let priceafter=(price*(100-discount))/100;
 
 
     //function
@@ -78,8 +79,10 @@ alert("image doesnt saved ")
             price:price,
              discount:discount,
              color:colors,
+             solded:solded,
              discribe:detail,
              brand:brand,
+             priceafter,
              garanty:garanty,
              tecnicalinfo:tecnicalinfo,
               existnumber:existnumber,
@@ -196,6 +199,13 @@ if (validation()==true){
                                         <div className='input-section'>            
                              
                                             <input type="text" value={price} onChange={e=>setPrice(e.target.value)} placeholder=" قیمت  " className="register-input" ></input>
+                                        </div>
+                                </div>
+                                <div>                          
+                                        <label  className="ness">فروش رفته</label>
+                                        <div className='input-section'>            
+                             
+                                            <input type="text" value={solded} onChange={e=>setSolded(e.target.value)}  className="register-input" ></input>
                                         </div>
                                 </div>
                                 <div>                          

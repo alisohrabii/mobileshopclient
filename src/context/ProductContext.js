@@ -9,6 +9,8 @@ const  ProductContextProvider = (props) => {
   
   const [product,setProduct] = useState([]);
 
+  const [typeofpro,setTypeofpro] = useState('');
+
   const [cart,setCart] = useState([]);
   const [Paytotprice,setPaytotprice] = useState('');
   const [num,setNum] = useState(0);
@@ -115,13 +117,22 @@ setCart([...newtempcart]);
 
       }
 
-  const settype=(item)=>{
+  const settype=(item,sort)=>{
     
   
   const tryfetch=async()=>{
-    try{ const data={
-         type:item};
-         
+    try{
+     let  data;
+         if(sort!==undefined){
+           data={
+            sort:sort,
+            type:item}; 
+         }else{
+           data={
+            type:item};
+         }
+         alert('hdh');
+         console.log(data);
     const GetproductbyType=await Axios.post("http://localhost:8088/product/GetproductbyType",data);
   
     console.log(GetproductbyType.data.mypro);
@@ -130,7 +141,7 @@ setCart([...newtempcart]);
 
 setProduct(GetproductbyType.data.mypro);
 
-
+setTypeofpro(item);
 }catch(err){
 if(err.response){    
 console.error(err.response.data.mss);
@@ -180,7 +191,7 @@ useEffect(()=>{
 
 
   return (
-    <ProductContext.Provider value={{product,productDetail,producttype,nextcart,errmssage,cart,handelProductDetail, setPaytotprice,Paytotprice,addcount,subcount,removeitem,settype,addtocart}}>
+    <ProductContext.Provider value={{product,productDetail,producttype,nextcart,typeofpro,setTypeofpro,errmssage,cart,handelProductDetail, setPaytotprice,Paytotprice,addcount,subcount,removeitem,settype,addtocart}}>
       {props.children}
     </ProductContext.Provider>
   )
