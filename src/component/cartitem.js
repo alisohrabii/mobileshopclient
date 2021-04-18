@@ -3,17 +3,16 @@ import "./cart.css";
 import trash from '../images/trash.svg';
 import {pricestyle,priceafter,pricediscount} from "../util/pricestyle";
 import React from 'react';
+import { MiunsIcon, PluseIcon, TrashIcon } from '../util/Icons';
   const Cartitem=(props)=>{
-  const {id,name, colorselected,rating,existnumber, brifinfo,brand,garanty, total,count}=props.item;            
-  const {addcount,subcount,errmssage, removeitem}=props.value;     
- 
-                         
+  const {id,name, colorselected,rating,existnumber, brifinfo,brand,garanty, images,total,count}=props.item;            
+  const {addcount,subcount,errmssage, removeitem}=props.value;            
                 return(
                  <div className=" cartitem" >
-               {console.log("kkkkkkk")}
-               {console.log()}
+               
+              
                      <div className=" ">
-                        <img src={testphoto} width='100px'/>
+                        <img src={`http://localhost:8088/${brifinfo.images[0]}`} width='100px'/>
                      </div>
                      
                      
@@ -74,19 +73,19 @@ import React from 'react';
                                      
                                        </div>
                                     
-                                       <div style={{display:"flex",flexDirection:"row"}}>
+                                       <div style={{ display:"flex",flexDirection:"row"}}>
                                              
-                                             <div style={{color:"rgb(12, 150, 155)",fontSize:"13px",margin:"0px 0% 0px auto"}} onClick={()=>removeitem(id)}>
-                                               <span style={{margin:"0px 2px 3px 2px"}}> حذف</span>
-                                             <img style={{width:"17px"}} src={trash}/>
+                                             <div style={{color:"rgb(0, 171, 194)",display:"flex",fontSize:"13px",margin:"0px 0% 0px auto"}} onClick={()=>removeitem(id)}>
+                                               <div style={{margin:"auto 3px"}}> حذف</div>
+                                             <TrashIcon width="15px" color='rgb(0, 171, 194)' ></TrashIcon>
                                              </div>
 
-                                             <div style={{margin:"0px 13px 0px auto",width:"75px" ,color:"rgb(155,155,155)",border:"1px solid rgb(155,155,155)",padding:"0px 9px",fontSize:"20px",borderRadius:"2px"}}> 
-                                             <span style={{fontSize:"26px"  ,margin:"0px 4px"}}  onClick={()=>subcount(id,colorselected)}>-</span>
-                                             <span style={{fontSize:"26px"  ,margin:"0px 7px 5px 7px"}} >{count}</span>
-                                             <span   style={{fontSize:"26px" ,margin:"0px 4px"}} onClick={()=>addcount(id,colorselected,existnumber)}>+</span>
+                                             <div style={{display:"flex", justifyContent:"space-between" ,margin:"0px 13px 0px auto",width:"75px" ,color:"rgb(155,155,155)",border:"1px solid rgb(155,155,155)",padding:"0px 9px",fontSize:"20px",borderRadius:"2px"}}> 
+                                            {count>1?(<div style={{margin:'7px 0px 0px 0px'}}  onClick={()=>subcount(id,colorselected)}><MiunsIcon color="rgb(0 ,170,195)" width="20px"/></div>):(<div style={{margin:'7px 0px 0px 0px'}}  ><MiunsIcon color="rgb(160,160,160)" width="20px"/></div>)}
+                                             <div style={{fontSize:"26px"  ,margin:"0"}} >{count}</div>
+                                            {count<existnumber+1?( <div   style={{margin:'7px 0px 0px 0px'}} onClick={()=>addcount(id,colorselected,existnumber)}><PluseIcon color="rgb(0 ,170,195)" width='20px'/></div>):(<div   style={{margin:'7px 0px 0px 0px'}} ><PluseIcon color="rgb(160 ,160,160)" width='20px'/></div>)}
                                              </div>
-                                             <div>{errmssage}</div>
+                                             <div style={{position:'absolute' ,bottom:"0px",right:"0px"}}>{errmssage}</div>
                                        </div>
 
 

@@ -85,36 +85,46 @@ box-shadow: 1px 1px 8px rgb(188,188,188);
 .elsti-item{
     background-color:white;
     font-size: 15px;
-
+   box-shadow: 1px 1px 6px rgb(255, 255, 255); 
+    margin: 0px 4px 0px 4px ;
+border: 1px solid rgb(255, 255, 255);
 }
 .elsti-item:hover{
 cursor: pointer;
+
 }
 .elsti-item div:nth-child(2){
     min-height: 44px;
     text-align: center;
 
 }
-.elsti-item div:nth-child(3){
+.discount-elstic-show{
     height: 28px;
-    padding: 0px 0 0px 5px;
-    text-align: left;
-    margin:9px 0 6px 0;
+   
+    display: inline-block;
+    padding: 0px 0 0px 3px;
+    border: 1px solid rgb(255, 136, 136);
+    text-align: center;
+    margin:9px 2px 6px 2px;
 }
 .elsti-item div:nth-child(3) span:first-child{
-    color:rgb(41, 182, 88);
-    margin: 0 6px 0 0;
+    color:rgb(255, 255, 255);
+    height: 100%;
+    
+    
     padding: 3px 4px ;
-    border-radius: 6px;
-    background-color: rgb(217, 241, 218);
+    white-space:nowrap;
+    background-color: rgb(245, 86, 147);
     font-weight: bold;
-    text-decoration-line: none;
+    
     font-size: 17px;
 
 }
 .elsti-item div:nth-child(3) span:nth-child(2){
     text-decoration-line: line-through;
     color: rgb(145, 145, 145);
+    padding: 3px 2px;
+
 }
 .elsti-item div:nth-child(4){
 direction: rtl;
@@ -135,12 +145,17 @@ margin-bottom: 19px;
 
 
 .box-elstic-show{
-margin:10px 10%;
-background-color: white;
-border-radius: 11px;
+margin:0px 2% 0px 1.5%;
+background-color: rgb(255, 255, 255);
+border-radius: 4px;
+padding-bottom:40px;
+
+transition:transform 0.08s;
 box-shadow: 1px 1px 8px rgb(188,188,188);
 }
+.box-elstic-show:hover{
 
+}
 .part4{
     margin: 0px 10%;
     display:block;
@@ -189,7 +204,7 @@ box-shadow: 1px 1px 8px rgb(188,188,188);
 
 
     .part-one{
-        margin:0px 9%;
+        margin:0px 1%;
         display: flex;
         flex-direction: row-reverse;
         
@@ -349,6 +364,8 @@ color:rgb(92, 91, 91) !important;
     visibility: hidden;
 }
 .rec.rec-arrow {
+    
+    
     border-radius: 9%;
 font-size: 14px !important;
     background-color: rgb(255, 255, 255) !important;

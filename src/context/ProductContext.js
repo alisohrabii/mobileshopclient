@@ -112,18 +112,11 @@ let tempcart=[...cart];
 let tempcart=[...cart];
 let newtempcart=tempcart.filter(item=>item.id!==id);
 setCart([...newtempcart]);
-
-
-
-      }
-
+  }
   const settype=(item,sort)=>{
-    
-  
-  const tryfetch=async()=>{
-    try{
-     let  data;
-         if(sort!==undefined){
+    const tryfetch=async()=>{
+    try{let  data;
+     if(sort!==undefined){
            data={
             sort:sort,
             type:item}; 
@@ -131,11 +124,8 @@ setCart([...newtempcart]);
            data={
             type:item};
          }
-         alert('hdh');
-         console.log(data);
     const GetproductbyType=await Axios.post("http://localhost:8088/product/GetproductbyType",data);
-  
-    console.log(GetproductbyType.data.mypro);
+
 
  
 

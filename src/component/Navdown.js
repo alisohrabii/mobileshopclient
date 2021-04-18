@@ -1,15 +1,13 @@
-import React from 'react';
-import Listproduct from './listproduct';
-import beautyphoto from '../images/beauty.svg';
-import tabletphoto from '../images/tablet.svg';
-import dishphoto from '../images/dish.svg';
-import gamepadphoto from '../images/gamepad.svg';
-import discountphoto from '../images/discount.svg';
-import tshirtphoto from '../images/tshirt.svg';
+import React,{useContext} from 'react';
+import {ProductContext} from '../context/ProductContext'
+
+
+import {withRouter} from 'react-router-dom';
+import {DiscountIcon2,HuawieIcon,AppleIcon,SumsungIcon,XaiomiIcon,HtcIcon,LgIcon} from '../util/Icons';
 import './navdown.css';
-
-const navdown = () => {
-
+var IconsColor='rgb(6, 93, 233)'
+const Navdown = (props) => {
+    const {settype}=useContext(ProductContext);    
 
     const  handlSearch=(childdata)=>{
 
@@ -28,53 +26,57 @@ const navdown = () => {
     },1000)
      
 }    
-    return (<div> <div className='navdown-con nnj '>
-         <div id="furn" className='items2'><div to="/login" className="links2" ><div className='insider'></div><img style={{width:"25px"}} src={dishphoto}/>
-         <span className="m-2">لوازم خانگی</span>
+    return (<div className='navdown-main-con' > <div className='navdown-con nnj '>
+         <div className='items2' onClick={()=>{settype('آیفون');
+                 
+                 props.history.push('/Product');
+               }}><div  className="links2" ><div className='insider'></div><AppleIcon width="25px" color={IconsColor} />
+         <span className="m-2">آیفون</span>
          </div>
             
-
-         <div  id="furnsub" className='container-sub' ><Listproduct  handleParentSearch={handlSearch} type='لوازم خانگی'/></div>
-         
          </div>
 
 
         
 
 
-         <div id="digi" className="items2"><div to="/login" className="links2  " ><div className='insider'></div><img style={{width:"25px"}} src={tabletphoto}/>
-         <span className="m-2">کالا های دیجیتال</span>
-         </div>
-         <div  id="digisub" className='container-sub' ><Listproduct  handleParentSearch={handlSearch} type='کالاهای دیجیتال'/></div>
-         </div>
+         <div  className="items2"  onClick={()=>{settype("هوآوی");
+                 
+                 props.history.push('/Product');
+               }}><div to="/login" className="links2  " ><div className='insider'></div><HuawieIcon width="25px" color={IconsColor}/>
+         <span className="m-2">هوآوی</span>
+         </div>  </div>
 
          
-        <div id="beaut" className="items"><div to="/login" className="links2" ><div className='insider'></div><img style={{width:"25px"}} src={beautyphoto}/>
-         <span className="m-2">لوازم آرایشی</span>
-         </div>      
-         <div  id="beautsub" className='container-sub' ><Listproduct  handleParentSearch={handlSearch} type='لوازم آرایشی'/></div>
-         </div>
+        <div className="items"  onClick={()=>{settype('شیائومی');
+                 
+                 props.history.push('/Product');
+               }}><div  className="links2" ><div className='insider'></div><XaiomiIcon width="25px" color={IconsColor}/>
+         <span className="m-2">شیائومی</span>
+         </div>      </div>
 
 
-         <div id='mod' className="items2"><div to="/login" className="links2" ><div className='insider'></div><img style={{width:"25px"}} src={tshirtphoto}/>
-         <span className="m-2">مد و پوشاک</span>
-         </div>
-         <div  id='modsub' className='container-sub'  ><Listproduct  handleParentSearch={handlSearch} type='مد وپوشاک'/></div>
-         </div> 
+         <div className="items2"  onClick={()=>{settype('الجی');
+                 
+                 props.history.push('/Product');
+               }}><div to="/login" className="links2" ><div className='insider'></div><LgIcon width="25px" color={IconsColor}/>
+         <span className="m-2">الجی</span>
+         </div>       </div> 
 
        
 
 
 
-         <div id='game' className="items2"><div to="/login"  className="links2"><div className='insider'></div><img style={{width:"25px"}} src={gamepadphoto}/>
-         <span className="m-2">بازی و سرگرمی</span>
-         </div>
-         <div  id='gamesub' className='container-sub' ><Listproduct  handleParentSearch={handlSearch} type='بازی وسرگرمی'/></div>
-         </div>
+         <div  className="items2"  onClick={()=>{settype('سامسونگ');
+                 
+                 props.history.push('/Product');
+               }}><div to="/login"  className="links2"><div className='insider'></div><SumsungIcon width="48px" color={IconsColor}/>
+         <span className="m-2">سامسونگ</span>
+         </div>     </div>
          
 
 
-         <div className="items2"><div to="/login" className="links2"><img style={{width:"25px"}} src={discountphoto}/>
+         <div className="items2"><div to="/login" className="links2"><DiscountIcon2 width="25px" color={IconsColor}/>
          <span className="m-2">پیشنهاد ویژه</span>
          </div></div>
 
@@ -85,4 +87,4 @@ const navdown = () => {
     );
 };
 
-export default navdown;
+export default withRouter( Navdown);

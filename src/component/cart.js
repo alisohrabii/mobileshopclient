@@ -8,10 +8,10 @@ import './cart.css';
            return(
                <ProductContext.Consumer>          
                   {value=>{const {cart}=value;
-          alert("car cotext work");
+        
                     if(cart.length>0){
-                      alert("car cotext work");
-                      console.log(cart);
+                  
+                      
                       return(
                         <div className="cartpage" >
                         <div className="cartpagelist"   > <Cartlist value={value} /></div>

@@ -1,6 +1,13 @@
-import React, {useState, useEffect } from 'react';
+import React, {useState, useEffect ,useContext} from 'react';
+import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
 import './HomePage.css';
+import {ProductContext} from '../context/ProductContext'
+
+import {withRouter} from 'react-router-dom';
+
 const ImgSlide = (props) => {
+    const {settype,handelProductDetail}=useContext(ProductContext);
+  
     const [currentleft, setcurrentleft] = useState(0);
     const [currentleft2, setcurrentleft2] = useState(true);
   
@@ -21,6 +28,23 @@ setTimeout(()=>{
        
 
     }
+
+ const handelimgclick=(index)=>{
+if (index==0||index==3){
+
+    settype('اپل');
+    props.history.push('/Product');
+}else if(index==1){
+    handelProductDetail('xiomie  4C id ');
+    props.history.push('/Productdetail');
+}else if(index==2){
+    settype('','solded');
+    props.history.push('/Product');
+}
+
+ }
+
+
   const  handel_dot_Color=(id)=>{
         for(let i=0;i<images.length-1;i++){
             var dot_elem=document.getElementById(`dot-${i}`);
@@ -86,9 +110,9 @@ elem.style.left=`0`;
         <div className="slideshow" id="conslider">
             
             <figure id="fig">
-         {images.map((item)=>{
+         {images.map((item,index)=>{
 
-   return <img  src={item}></img>
+   return <img  onClick={()=>handelimgclick(index)}  src={item}></img>
 
          })}
          </figure>   
@@ -102,4 +126,4 @@ elem.style.left=`0`;
     );
 };
 
-export default ImgSlide;
+export default withRouter(ImgSlide);

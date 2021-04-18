@@ -6,9 +6,8 @@ import {useHistory} from "react-router-dom";
 
 import {pricestyle,priceafter} from '../util/pricestyle';
 import { DiscountIcon,SortIcon,OfferIcon,HeartIcon,CommentIcon } from '../util/Icons';
+import Loadingsniper from './Loadingsniper';
 
-
-  
 class Product extends React.Component {
   constructor (props){
   super (props);
@@ -75,7 +74,8 @@ render(){
  const handelProductDetail = this.context.handelProductDetail;
  const typeofpro=this.context.typeofpro;
  const getproduct = this.context.settype;
-    return (
+ 
+ return (
         <div className='main-container'>
           <div className="sort">
             <div onClick={this.sortshow} className='sorthead'><SortIcon width="26px"/> <div>مرتب سازی </div><div>{this.state.sort}</div></div>
@@ -103,9 +103,8 @@ render(){
             {products3.map(product=>{
             console.log(`product price ${product.price}`);  
 
-            const {proid,price,discount,images,name}=product;
-            
-            
+            const {proid,price,likes,offer,gift,discount,images,name}=product;
+                           
                 return <div className='product-item' onClick={()=>{handelProductDetail(proid);
                  
                   this.props.history.push('/ProductDetail');
@@ -121,15 +120,25 @@ render(){
                               ):(
                                 <div className='product-item-price' style={{opacity:"0"}}><span> %{product.discount}</span> <span></span></div>
                                 )}
-                              <div className='product-item-price'><span> {pricestyle(priceafter(price,1,discount))}</span> <span>تومان</span></div>
+                                <div style={{display:"flex",width:"98%"}}>
+                              
+                              
+                                {likes!==''?(<div style={{display:'flex',color:"rgb(160,160,160)",fontSize:'13px'}}><HeartIcon width='18px' color='rgb(160,160,160)' /> <div  style={{margin:'auto 0'}}>{likes}</div></div>):(<div style={{display:'flex',opacity:"0",color:"rgb(160,160,160)",fontSize:'13px'}}><HeartIcon width='18px' color='rgb(160,160,160)' /> <div  style={{margin:'auto 0'}}>{likes} </div></div>)}
+                           
+                               <div className='product-item-price'><span> {pricestyle(priceafter(price,1,discount))}</span> <span>تومان</span></div>
+                                </div>
                               <div style={{display:'flex',width:'99%',marginBottom:'13px'}}>
-                                <div style={{display:'flex',fontSize:'14px',width:'50%'}}><OfferIcon color='rgb(160,160,160)' width='20px'/><div style={{margin:'auto 0',color:'rgb(160,160,162)',fontSize:'13px'}}> پیشنهاد ویژه</div></div>
+                                {offer==true?(<div style={{display:'flex',fontSize:'14px',width:'50%'}}><OfferIcon color='rgb(160,160,160)' width='20px'/><div style={{margin:'auto 0',color:'rgb(160,160,162)',fontSize:'13px'}}> پیشنهاد ویژه</div></div>):(null)}
+                                {gift!==''?(<div style={{display:'flex',fontSize:'14px',width:'50%'}}><OfferIcon color='rgb(160,160,160)' width='20px'/><div style={{margin:'auto 0',color:'rgb(160,160,162)',fontSize:'13px'}}>یک عدد موس هدیه</div></div>):(null)}
+                                {gift=='' && offer==false? (<div style={{display:'flex',opacity:"0",fontSize:'14px',width:'50%'}}><OfferIcon color='rgb(160,160,160)' width='20px'/><div style={{margin:'auto 0',color:'rgb(160,160,162)',fontSize:'13px'}}>یک عدد موس هدیه</div></div>):(null)}
+           
                                   </div>
                                   <div className='product-hover-section'>
                                     <div>امتیاز کاربران </div>
-                              <div className="like-section"><HeartIcon width='20px' color='rgb(100,100,100)' /> <div>افزودن به علاقه مندی ها</div></div>
-
-                                  </div>
+                                   <div className="like-section"><HeartIcon width='20px' color='rgb(100,100,100)' /> <div>افزودن به علاقه مندی ها</div></div>
+                              
+                                    </div>
+                                      
                            </div>
                         </div>
   
@@ -142,7 +151,7 @@ render(){
 
 
           
-            </div>):(<div>loading.......</div>)}
+            </div>):(<div><Loadingsniper /></div>)}
             </div>
 
                 </div>

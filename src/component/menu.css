@@ -2,15 +2,13 @@
 .menu-main{
     display:block;
 }
+#menuitems{
+background-color: blue;
 
-@media screen and (min-width: 690px) {
-    .menu-main{
-        display: none;
-    }
-    
 }
+
       
-.menuitems{
+#menuitems{
     position:fixed;
     right:-100%;
     top:19px;
@@ -25,7 +23,7 @@
          -ms-overflow-style: none;
     }
     @media (min-width: 640px){
-    .menuitems{
+    #menuitems{
     width:30%;
     }
     

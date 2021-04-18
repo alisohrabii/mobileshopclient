@@ -2,6 +2,7 @@ import React,{useEffect,useContext,useState} from 'react';
 import {AuthContext} from '../context/AuthContext';
 import './Navbar.css';
 import Axios from 'axios';
+import {BagIcon} from '../util/Icons';
 import SearchShow from './SearchShow';
 import Search from './Search.js';
 import { ProductContext } from '../context/ProductContext';
@@ -12,6 +13,7 @@ import Listproduct from './listproduct'
 import Menu from './Menu';
 import {Link} from 'react-router-dom';
 import Navdown from './Navdown';
+
 const Navbar = () => {
     const {userinfo}=useContext(AuthContext);
     const {cart}=useContext(ProductContext);
@@ -56,8 +58,9 @@ const Navbar = () => {
             </div>
             )}
             <div className="cart">
+            
              {cart.length!==0?(<span className='numbercart'>{cart.length}</span>):(null)}
-                <img src={cartphoto} width='30px'/>
+                <BagIcon width='30px' color="rgb(100,100,100)" />
               <Link  to="/Cart"> <span className="cart-span" >سبد خرید</span></Link> 
            </div>
         </div>

@@ -13,8 +13,14 @@ const SetProduct = (props) => {
     const [brand, setBrand] = useState('');
     const [TecName, setTecName] = useState('');
     const [TecValue, setTecValue] = useState('');
-  
+    
+    const [likes, setLikes] = useState([]);
+  const [like, setLike] = useState('');
+  const [offer, setOffer] = useState(false);
  
+ 
+  const [gift, setGift] = useState('');
+  
  
     const [name, setName] = useState('');
   const [type, setType] = useState('');
@@ -23,6 +29,8 @@ const SetProduct = (props) => {
   const [color, setColor]=useState('');
   const [colors, setColors]=useState([]);
   const [solded, setSolded] = useState(0);
+  const [parcham, setParcham]=useState('');
+  const [engname, setEngname]=useState('');
  
   const [errMssage, setErrMssage]=useState('');
   const [images, setImages] = useState([]);
@@ -40,10 +48,31 @@ const tempT=tecnicalinfo.filter(item=>item.name!==name);
 setTecnicalinfo([...tempT]);
 
   }
+  const removelike=(index)=>{
+      let arr=[...likes];
+
+arr.splice(index,index);
+setLikes(arr);
+
+  }
   const handelcolors=()=>{
 setColors([...colors,color])
 
   }
+  
+  const handellikes=()=>{
+    setLikes([...likes,like])
+    
+      }
+      
+  const handeloffer=()=>{
+   const w2= document.getElementById("offer-sup").value
+    if(w2=='yes'){
+        setOffer(true);
+    }else{
+        setOffer(false);
+    }
+      }
  const ondrop=(files)=>{
 
 let formdata= new FormData();
@@ -79,6 +108,11 @@ let priceafter=(price*(100-discount))/100;
             price:price,
              discount:discount,
              color:colors,
+             engname:engname,
+             parcham:parcham,
+             offer:offer,
+             likes:like,
+             gift:gift,
              solded:solded,
              discribe:detail,
              brand:brand,
@@ -194,6 +228,20 @@ if (validation()==true){
                                         <input   type="text" value={name} onChange={e=>setName(e.target.value)} placeholder="نام خود را وارد کنید"/>
                                     </div> 
                                 </div>
+                                <div >
+                                    <label  className="ness">نام انگلیسی</label>
+                                    <div className='input-section'>                                                 
+                    
+                                        <input   type="text" value={engname} onChange={e=>setEngname(e.target.value)} placeholder="نام خود را وارد کنید"/>
+                                    </div> 
+                                </div>
+                                <div >
+                                    <label  className="ness">و ضعیت پرچم داری</label>
+                                    <div className='input-section'>                                                 
+                    
+                                        <input   type="text" value={parcham} onChange={e=>setParcham(e.target.value)} placeholder="نام خود را وارد کنید"/>
+                                    </div> 
+                                </div>
                                 <div>                          
                                         <label  className="ness">قیمت </label>
                                         <div className='input-section'>            
@@ -236,7 +284,7 @@ if (validation()==true){
                                             <input type="text" value={TecValue} onChange={e=>setTecValue(e.target.value)} placeholder="مقدار مشخصه" className="register-input" ></input>
                                             <button onClick={handlrTecnicalInfo}>add</button>
                                         </div>
-                                        <div>{tecnicalinfo.length >0 &&tecnicalinfo.map(item=>{
+                                        <div >{tecnicalinfo.length >0 &&tecnicalinfo.map(item=>{
                                              
                                            return  <div onClick={()=>handelTecnicalinfoDelet(item.name)}><span>{item.name}</span>     ::    <span>{item.value}</span></div>                      
 
@@ -249,7 +297,7 @@ if (validation()==true){
                                         <input   type="number" value={discount} onChange={e=>setDiscount(e.target.value)} placeholder="میزان تخفیف را وارد کنید"/>
                                     </div> 
                                 </div>
-                                <div >
+                                <div  style={{marginTop:"20px"}}>
                                     <label  className="ness">color</label>
                                     <div className='input-section'>                                                 
                                         
@@ -257,13 +305,39 @@ if (validation()==true){
                                        </div> 
                                 </div>
                                 <div><button onClick={ handelcolors}>add color</button></div> 
-                                  
-                                <div >
+                                <div style={{marginTop:"30px"}} >
+                                    <label  className="ness">likes</label>
+                                    <div className='input-section'>                                                 
+                                        
+                                        <input   type="text" value={like} onChange={e=>setLike(e.target.value)} placeholder="like"/>
+                                       </div> 
+                                </div>
+                                
+                                <div   style={{marginTop:"30px"}}>
                                     <label  className="ness">دسته بندی کالا</label>
                                     <div className='input-section'>                                                 
                                     
                                         <input   type="text" value={type} onChange={e=>setType(e.target.value)} placeholder="TYpe"/>
                                     </div> 
+                                </div>
+                                <div  style={{marginTop:"30px"}} >
+                                    <label  className="ness">هدیه</label>
+                                    <div className='input-section'>                                                 
+                                    
+                                        <input   type="text" value={gift} onChange={e=>setGift(e.target.value)} placeholder="TYpe"/>
+                                    </div> 
+                                </div>
+                                <div  style={{marginTop:"30px"}}>
+                                    <label  className="ness">پیشنهاد شگفت انگیز</label>
+                                    <div className='input-section'>                                                 
+                                    <select id='offer-sup'>
+                                    <option value='no'>NO </option>
+                                        <option value='yes'>YES</option>
+                                    </select>
+                                    <div><button onClick={ handeloffer}> add offer</button></div> 
+                               
+                                       </div> 
+                                      
                                 </div>
                                 <div >
                                     <label  className="ness">اdetail</label>

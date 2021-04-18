@@ -3,15 +3,16 @@ import React from 'react';
 import './ProductDetail.css';
 import bestprice from '../images/price3.svg';
 import truck from '../images/truck.svg';
-import describephoto from '../images/describe.svg';
-import tecnicalphoto from '../images/tecnical.svg';
-import {ProductContext} from '../context/ProductContext'
+import {ProductContext} from '../context/ProductContext';
+import Axios from "axios";
+import ElsticSlide from "./ElsticSlide";
 import {Carousel} from 'react-responsive-carousel';
-import ZoomGallery from 'react-zoom-carousel';
+
 import "react-responsive-carousel/lib/styles/carousel.min.css"; 
 // requires a loader
 
 import {pricestyle,priceafter} from '../util/pricestyle';
+import { MenuIcon ,BookIcon,PriceIcon,TruckIcon} from '../util/Icons';
 
 const zoomGallery = [
     'http://placehold.it/900x',
@@ -25,7 +26,7 @@ const zoomGallery = [
 class ProductDetail extends React.Component {
     constructor() {
         super();
-        this.state = { colorselected:"",parttowshow:""}
+        this.state = { colorselected:"",parttowshow:"",SimProduct:[]}
     }
 
 
@@ -51,8 +52,19 @@ if (i==index){
 
 
     this.setState({parttowshow:item })
+if(item=='describe'){
+    
+    document.getElementById('tecnical').style.backgroundColor="rgb(250,250,250)";
+
+document.getElementById('describe').style.backgroundColor="white";
+}else{
+
+    document.getElementById('tecnical').style.backgroundColor="white";
+
+    document.getElementById('describe').style.backgroundColor="rgb(250,250,250)";
 
 
+}
  }
 
 
@@ -60,9 +72,14 @@ if (i==index){
 
 componentDidMount(){
 
-console.log('oooo')
 
-}
+    Axios.post("http://localhost:8088/product/GetproductbyType",{type:'شارژر'}).then(res=>{
+    console.log(res);
+        if(res.status==200){
+           this.setState({SimProduct:res.data.mypro});
+        }
+
+})};
 
 
 
@@ -89,7 +106,7 @@ console.log('oooo')
         return (
             <React.Fragment>
 
-<div>
+<div style={{margin:'40px 0px 0px 0px'}}>
                 
                 {unicproduct!==undefined?(<div>
                     <div className='part-one'>
@@ -131,8 +148,6 @@ return(<div>
                               ):(
                                 <div className='product-item-price' style={{opacity:"0"}}><span></span> <span></span></div>
                                 )}
-                              <div className='product-item-price'><span> {pricestyle(unicproduct.brifinfo.price)}</span> <span>تومان</span></div>
-                              
                        <div className='price-de'>قیمت :       <span>{pricestyle(priceafter(unicproduct.brifinfo.price,1,unicproduct.brifinfo.discount))} </span>تومان</div>
                     <div><div onClick={()=>{
         if(this.state.colorselected!==''){
@@ -143,47 +158,43 @@ return(<div>
         addtocart(unicproduct,unicproduct.colors[0])}}} className='button-addtocard'>افزودن به سبد خرید</div>
        
         </div> 
-    
-                            
-                            
-                            
-                            
-                 
-                                                
-                        <div  className="under-button">
-                        <div><img  src={bestprice} width="25px"/> </div>
-                        <div> تضمین بهترین قیمت</div>
+                             
+                        <div style={{display:'flex',margin:"3px 7px",flexDirection:"row-reverse",color:"rgb(160,160,160)"}}>
+                        <PriceIcon width="23px" color="rgb(160,160,160)" />
+                        <div style={{margin:'auto 3px'}}> تضمین بهترین قیمت</div>
                         </div>
-                        <div  className="under-button">
-                      <div> <img  src={truck} width="25px"/></div> 
-                      <div>  ارسال در سریعترین زمان</div>                         </div>
-         
+
+                        <div  style={{display:'flex',margin:"3px 7px",flexDirection:'row-reverse',color:"rgb(160,160,160)"}}>
+                        <TruckIcon width="25px" color="rgb(160,160,160)"/>
+                        <div style={{margin:'auto 3px'}}>  ارسال در سریعترین زمان</div>
+                        </div>
+
                       </div>
-                </div>
-                <div>
+                      </div>
+                       <div>
                             <div className='parttowselect'>
-                              <div className='tecnicalselect' onClick={()=>{this.parttowselect("tecnical")}}>
-
-                                            <div  className="under-button">
-                                    <div> <img  src={tecnicalphoto} width="20px"/></div> 
-                                    <div>مشخصات فنی</div>
-                                    </div>
-
-
-
-                              </div>
-                              <div  className="describeselect " onClick={()=>{this.parttowselect("describe")}}>
+                            
+                              <div   style={{padding:"10px 0px"}} id='describe' onClick={()=>{this.parttowselect("describe")}}>
 
 
                                   
                                                 <div  className="under-button">
-                                        <div> <img  src={describephoto} width="20px"/></div> 
-                                        <div>توضیحات</div>
+                                        <BookIcon color="rgb(166,166,166)" width='22px'/>
+                                        <div style={{margin:'auto 5px'}}>توضیحات</div>
                                         </div>
                               </div>
-                           
+                              <div  id='tecnical' style={{padding:"10px 0px"}}  onClick={()=>{this.parttowselect("tecnical")}}>
+
+<div  className="under-button">
+ <MenuIcon width='22px' color="rgb(166,166,166)"/> 
+<div style={{margin:'auto 5px'}}>مشخصات فنی</div>
+</div>
+
+
+</div>
 
                             </div>
+
 
                             <div className='parttowcontent'>
                             {this.state.parttowshow=='describe'?(
@@ -203,15 +214,17 @@ return(<div>
                             </div>
 
                 </div>
-
+<div style={{height:'42px' ,background:"rgb(250,250,250)"}}></div>
+                {this.state.SimProduct.length>0?(
+            <div className='box-elstic-show-detailpage' >
+          <div style={{margin:"0px 45px ",color:"rgb(103,103,103)",padding:"19px 0px",fontSize:"18px",fontWeight:"300",textAlign:"right",borderBottom:"1px solid rgb(211,211,211)"}}>کالاهای مشابه</div>
+          <ElsticSlide itemms={this.state.SimProduct} time='13000'/>
+            </div>):(<div>.....myskeleton</div>)
+}
 
 
             </div>):(<div>loading</div>)}
-
-
-
 </div>
-
             </React.Fragment>
         );
     }
